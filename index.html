@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Evolution Command Center | SALESINTEL</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Geist:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#8d9385",
+                        "on-secondary": "#003732",
+                        "on-surface-variant": "#c3c8ba",
+                        "on-surface": "#e2e2e3",
+                        "on-tertiary-fixed": "#2c1600",
+                        "inverse-primary": "#456730",
+                        "tertiary-container": "#fdb66e",
+                        "tertiary-fixed": "#ffdcbe",
+                        "primary-fixed": "#c5efa9",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#693c00",
+                        "on-primary-container": "#385a24",
+                        "secondary-container": "#00ab9d",
+                        "surface-container-low": "#1a1c1d",
+                        "secondary-fixed": "#76f7e7",
+                        "surface-container-lowest": "#0c0e0f",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#774503",
+                        "surface-dim": "#121415",
+                        "secondary": "#5ce0d0",
+                        "on-secondary-fixed-variant": "#005049",
+                        "inverse-on-surface": "#2f3132",
+                        "surface-container-high": "#282a2b",
+                        "primary-container": "#a8d08d",
+                        "on-primary-fixed": "#092100",
+                        "surface": "#121415",
+                        "surface-tint": "#aad28f",
+                        "surface-container-highest": "#333536",
+                        "secondary-fixed-dim": "#56dbcb",
+                        "on-tertiary": "#4a2800",
+                        "inverse-surface": "#e2e2e3",
+                        "on-secondary-container": "#003832",
+                        "surface-container": "#1e2021",
+                        "on-primary": "#183805",
+                        "background": "#0d0f10",
+                        "error-container": "#93000a",
+                        "primary": "#c3eca7",
+                        "tertiary-fixed-dim": "#ffb870",
+                        "surface-variant": "#333536",
+                        "tertiary": "#ffdab9",
+                        "on-secondary-fixed": "#00201d",
+                        "on-primary-fixed-variant": "#2e4f1a",
+                        "primary-fixed-dim": "#aad28f",
+                        "surface-bright": "#38393a",
+                        "outline-variant": "#43493e",
+                        "on-background": "#e2e2e3",
+                        "muted-custom": "rgba(142, 152, 158, 0.6)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "card-stat-p": "20px",
+                        "gap-md": "16px",
+                        "gap-xs": "4px",
+                        "card-row-p": "16px",
+                        "gap-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display": ["Hanken Grotesk"],
+                        "body-lg": ["Geist"],
+                        "badge": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "badge": ["10px", {"lineHeight": "12px", "letterSpacing": "0.03em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0d0f10;
+            color: #e2e2e3;
+            -webkit-font-smoothing: antialiased;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #333536;
+            border-radius: 10px;
+        }
+        .glass-card {
+            background: #141819;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-border {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .ai-accent {
+            border-left: 4px solid #5ce0d0;
+            box-shadow: -10px 0 20px rgba(92, 224, 208, 0.03);
+        }
+        .sidebar-active {
+            background-color: rgba(92, 224, 208, 0.1);
+            color: #5ce0d0;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-subtle {
+            animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden flex min-h-screen">
+
+<!-- Navigation Drawer (Sidebar) -->
+<aside class="w-[240px] h-full fixed left-0 top-0 border-r border-white/5 bg-surface-container-low hidden lg:flex flex-col py-6 z-50">
+    <div class="px-6 mb-8 flex items-center gap-3">
+        <div class="w-9 h-9 bg-secondary/10 flex items-center justify-center rounded-lg border border-secondary/20">
+            <span class="material-symbols-outlined text-secondary text-xl">terminal</span>
+        </div>
+        <div>
+            <h1 class="text-lg font-headline-lg font-bold text-on-surface tracking-tight">EvoForge</h1>
+            <p class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest opacity-50">Admin Console</p>
+        </div>
+    </div>
+    <nav class="flex-1 space-y-1 px-3">
+        <a class="bg-secondary/10 text-secondary font-bold flex items-center px-4 py-2.5 transition-all rounded-lg" href="#" onclick="switchPage('dashboard')">
+            <span class="material-symbols-outlined mr-3 text-[20px]">dashboard</span>
+            <span class="font-body-md text-body-md">Dashboard</span>
+        </a>
+        <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-lg group" href="#" onclick="switchPage('registry')">
+            <span class="material-symbols-outlined mr-3 text-[20px]">inventory_2</span>
+            <span class="font-body-md text-body-md">Skill Registry</span>
+        </a>
+        <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-lg group" href="#" onclick="switchPage('workflows')">
+            <span class="material-symbols-outlined mr-3 text-[20px]">account_tree</span>
+            <span class="font-body-md text-body-md">Workflows</span>
+        </a>
+        <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-lg group" href="#" onclick="switchPage('guardrails')">
+            <span class="material-symbols-outlined mr-3 text-[20px]">gpp_maybe</span>
+            <span class="font-body-md text-body-md">Guardrails</span>
+        </a>
+    </nav>
+    <div class="mt-auto px-4 py-4 border-t border-white/5">
+        <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer">
+            <div class="w-9 h-9 rounded-full overflow-hidden bg-secondary/20 flex items-center justify-center text-secondary font-bold border border-secondary/30 text-xs">NS</div>
+            <div class="flex flex-col overflow-hidden">
+                <span class="font-body-md text-body-md font-bold text-on-surface truncate">Naresh Shah</span>
+                <span class="font-label-sm text-[10px] text-on-surface-variant uppercase">RevOps Lead</span>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Dashboard Page View -->
+<div class="flex-1 flex flex-col min-w-0 lg:ml-[240px]" id="dashboard-page">
+    <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-surface-dim/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-secondary font-bold">terminal</span>
+            <h1 class="font-display text-headline-md font-bold tracking-tighter text-secondary">SALESINTEL</h1>
+        </div>
+        <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
+    </header>
+    <main class="px-container-margin space-y-gap-md max-w-full pt-2">
+        <header class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
+            <div class="relative cursor-pointer">
+                <span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">notifications</span>
+                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-surface"></span>
+            </div>
+            <div class="cursor-pointer">
+                <span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">help</span>
+            </div>
+        </header>
+        <section class="space-y-1">
+            <h2 class="font-display text-headline-lg text-on-surface tracking-tight">Evolution Command Center</h2>
+            <p class="font-body-md text-on-surface-variant flex items-center gap-xs">
+                Grid Dynamics · <span class="text-secondary/80">Last updated 2 min ago</span>
+            </p>
+        </section>
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-gap-md">
+            <div class="xl:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-gap-sm">
+                <div class="glass-card p-card-stat-p rounded-lg">
+                    <div class="flex flex-col gap-xs">
+                        <p class="text-[10px] font-bold uppercase text-on-surface-variant/50 tracking-widest">Active Skills</p>
+                        <div class="flex items-baseline justify-between gap-2">
+                            <div class="flex flex-col">
+                                <span class="text-display font-display text-on-surface">47</span>
+                                <span class="text-[10px] font-bold" style="color: rgb(168, 208, 141);">+6 since last month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-card-stat-p rounded-lg">
+                    <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Candidates</p>
+                    <div class="flex flex-col">
+                        <span class="text-headline-lg font-display text-on-surface leading-tight">12</span>
+                        <span class="text-[10px] font-bold text-on-surface-variant"><span style="color: rgb(168, 208, 141);">3 approved</span> · <span class="text-error">2 rejected</span></span>
+                    </div>
+                </div>
+                <div class="glass-card p-card-stat-p rounded-lg">
+                    <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Avg Improvement</p>
+                    <div class="flex flex-col"><span class="text-headline-lg font-display text-on-surface leading-tight">+18%</span><span class="text-[10px] font-bold" style="color: rgb(168, 208, 141);">+4.2pp vs prior</span></div>
+                </div>
+                <div class="glass-card p-card-stat-p rounded-lg">
+                    <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">A/B Tests</p>
+                    <div class="flex flex-col">
+                        <span class="text-headline-lg font-display text-on-surface leading-tight">4</span>
+                        <span class="text-[10px] font-bold text-on-surface-variant">2 shadow . 2 Live</span>
+                    </div>
+                </div>
+                <div class="glass-card p-card-stat-p rounded-lg">
+                    <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Open Clusters</p>
+                    <div class="flex flex-col">
+                        <span class="text-headline-lg font-display text-error leading-tight">3</span>
+                        <span class="text-error text-[10px] font-bold">1 Critical</span>
+                    </div>
+                </div>
+                <div class="glass-card relative overflow-hidden rounded-lg col-span-full sm:col-span-1 min-h-[100px] flex items-center px-4">
+                    <div class="z-10">
+                        <h3 class="font-display text-body-lg font-bold text-on-surface leading-tight">Neural Evolution</h3>
+                        <p class="text-on-surface-variant text-[10px] mt-1">v3.2.1 Lead Routing active.</p>
+                        <button class="mt-2 text-secondary text-[10px] font-bold uppercase hover:underline">Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="xl:col-span-5 flex flex-col h-full">
+                <div class="glass-card rounded-lg p-4 flex-1 flex flex-col">
+                    <h3 class="font-display text-body-lg font-bold text-on-surface mb-4">Live Activity</h3>
+                    <div class="space-y-4 custom-scrollbar overflow-y-auto max-h-[340px] pr-2">
+                        <div class="flex gap-gap-md">
+                            <div class="mt-1 w-2 h-2 rounded-full flex-shrink-0 shadow-[0_0_8px_rgba(168,208,141,0.5)]" style="background-color: rgb(168, 208, 141);"></div>
+                            <div class="space-y-0.5">
+                                <p class="text-[13px] text-on-surface leading-snug">Skill <span class="font-mono text-secondary" style="color: rgb(168, 208, 141);">lead-routing-geo-industry</span> v3.2.1 approved</p>
+                                <p class="text-[10px] text-muted-custom">2 min ago • RevOps</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-gap-md">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-on-surface-variant/30 flex-shrink-0"></div>
+                            <div class="space-y-0.5">
+                                <p class="text-[13px] text-on-surface leading-snug">A/B test started: <span class="font-mono">multi-thread-gap-detector</span></p>
+                                <p class="text-[10px] text-muted-custom">18 min ago • Temporal</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-gap-md">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-error flex-shrink-0 shadow-[0_0_8px_rgba(242,139,130,0.5)]"></div>
+                            <div class="space-y-0.5">
+                                <p class="text-[13px] text-error leading-snug font-bold uppercase text-[11px]">Failure Cluster #FC-0934</p>
+                                <p class="text-[13px] text-on-surface">6 events in <span class="font-mono">forecast-q2-pipeline</span></p>
+                                <p class="text-[10px] text-muted-custom">42 min ago</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-gap-md">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-on-surface-variant/30 flex-shrink-0"></div>
+                            <div class="space-y-0.5">
+                                <p class="text-[13px] text-on-surface leading-snug">Candidate generated: <span class="font-mono">proposal-handoff-checklist</span></p>
+                                <p class="text-[10px] text-muted-custom">1h ago • EvoForge</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="space-y-gap-sm pt-4">
+            <div class="flex justify-between items-end px-1">
+                <h3 class="font-display text-headline-md text-on-surface">Recent Evolutions</h3>
+                <span class="text-secondary text-[10px] font-bold uppercase cursor-pointer hover:underline">View All</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-gap-sm">
+                <div class="glass-card ai-accent rounded-lg px-card-row-p py-3 flex flex-col justify-between min-h-[90px]" style="border-left-color: rgb(168, 208, 141);">
+                    <div class="flex justify-between items-start">
+                        <div class="min-w-0">
+                            <p class="font-mono text-on-surface text-body-md font-bold truncate">lead-routing-geo-industry</p>
+                            <p class="text-[10px] text-muted-custom">v3.2.1 • Source #FC-0847 • 2h ago</p>
+                        </div>
+                        <span class="bg-primary-container/10 text-primary-container text-badge font-badge uppercase px-2 py-0.5 rounded">Promoted</span>
+                    </div>
+                    <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
+                        <span class="font-bold text-headline-md tracking-tight" style="color: rgb(168, 208, 141);">+23.4%</span>
+                        <span class="text-[10px] text-muted-custom">LIFT SCORE</span>
+                    </div>
+                </div>
+                <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-white/10 rounded-lg">
+                    <div class="flex justify-between items-start">
+                        <div class="min-w-0">
+                            <p class="font-mono text-on-surface text-body-md font-bold truncate">multi-thread-gap-detector</p>
+                            <p class="text-[10px] text-muted-custom">v2.1.0 • Source #FC-0912 • Shadow</p>
+                        </div>
+                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded">A/B Test</span>
+                    </div>
+                    <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
+                        <span class="text-on-surface font-bold text-headline-md tracking-tight">+18.0%*</span>
+                        <span class="text-[10px] text-muted-custom">PROJECTED</span>
+                    </div>
+                </div>
+                <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-white/10 rounded-lg">
+                    <div class="flex justify-between items-start">
+                        <div class="min-w-0">
+                            <p class="font-mono text-on-surface text-body-md font-bold truncate">proposal-handoff-checklist</p>
+                            <p class="text-[10px] text-muted-custom">v1.0.0 • Pre-Sales Queue • Pending</p>
+                        </div>
+                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded">Review</span>
+                    </div>
+                    <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
+                        <span class="text-on-surface font-bold text-headline-md tracking-tight">Qual.</span>
+                        <span class="text-[10px] text-muted-custom">ANALYSIS</span>
+                    </div>
+                </div>
+                <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-error/50 rounded-lg">
+                    <div class="flex justify-between items-start">
+                        <div class="min-w-0">
+                            <p class="font-mono text-on-surface/50 text-body-md font-bold line-through truncate">opp-dedup-fuzzy-match</p>
+                            <p class="text-[10px] text-muted-custom">v4.0.2 • Cluster #FC-0899 • Archived</p>
+                        </div>
+                        <span class="bg-error/10 text-error text-badge font-badge uppercase px-2 py-0.5 rounded">Rejected</span>
+                    </div>
+                    <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
+                        <span class="text-error/50 font-bold text-headline-md tracking-tight">-2.1%</span>
+                        <span class="text-[10px] text-muted-custom">VARIANCE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- Skill Registry Section (admin_skill_registry.html view) -->
+<div id="registry-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto">
+    <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-surface-dim/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-secondary font-bold">inventory_2</span>
+            <h1 class="font-display text-headline-md font-bold tracking-tighter text-secondary">Skill Registry</h1>
+        </div>
+        <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
+    </header>
+    <main class="px-container-margin space-y-gap-md max-w-full pt-2">
+        <header class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
+            <div class="relative cursor-pointer">
+                <span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">notifications</span>
+                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-surface"></span>
+            </div>
+            <div class="cursor-pointer">
+                <span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">help</span>
+            </div>
+        </header>
+        <section class="flex flex-col lg:flex-row lg:items-center justify-between gap-md mb-2 ml-2">
+            <div class="flex items-start gap-md">
+                <div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary border border-secondary/20">
+                    <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                </div>
+                <div class="ml-2">
+                    <div class="flex items-center gap-sm flex-wrap">
+                        <h3 class="font-display text-headline-lg text-on-surface">lead-routing-geo-industry</h3>
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                        v3.2.1 • Lineage: 3 ancestors • 1,847 invocations
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center gap-sm">
+                <button class="px-4 py-2 bg-secondary/10 text-secondary font-bold text-body-md rounded-lg border border-secondary/30 hover:bg-secondary/20 transition-colors flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-lg">schema</span>View Graph
+                </button>
+                <button class="px-4 py-2 bg-error-container/20 text-error font-bold text-body-md rounded-lg border border-error/20 hover:bg-error-container/30 transition-colors flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-lg">history</span>Rollback
+                </button>
+            </div>
+        </section>
+        <div class="flex gap-md border-b border-white/5 mb-6">
+            <button class="px-4 py-3 text-secondary border-b-2 border-secondary font-bold text-body-md">Overview</button>
+            <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md">Version History</button>
+            <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md">Code &amp; Prompt</button>
+            <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md">Eval Results</button>
+            <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md">Dependencies</button>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-gap-md">
+            <div class="lg:col-span-2 glass-card rounded-lg p-card-stat-p flex flex-col">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="font-badge text-badge uppercase text-on-surface-variant">A/B TEST RESULTS — V3.2.1 VS V3.1.0</span>
+                    <span class="material-symbols-outlined text-on-surface-variant text-lg">info</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-6">
+                    <div class="p-5 bg-surface-container-low rounded-lg border border-white/5 relative group">
+                        <div class="absolute top-4 right-4 text-on-surface-variant font-label-sm text-label-sm">BASELINE V3.1.0</div>
+                        <div class="mt-4">
+                            <span class="font-display text-[42px] leading-tight font-bold text-error">61.2%</span>
+                            <p class="text-on-surface-variant font-body-md text-body-md">acceptance rate</p>
+                        </div>
+                    </div>
+                    <div class="p-5 bg-surface-container-low rounded-lg border relative group border-l-4" style="border-left-color: rgb(168, 208, 141); box-shadow: -10px 0 20px rgba(168, 208, 141, 0.03);">
+                        <div class="absolute top-4 right-4 text-on-surface font-label-sm text-label-sm">CHALLENGER V3.2.1</div>
+                        <div class="mt-4">
+                            <span class="font-display text-[42px] leading-tight font-bold" style="color: rgb(168, 208, 141);">84.6%</span>
+                            <p class="text-on-surface-variant font-body-md text-body-md">acceptance rate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-auto bg-secondary/5 border border-secondary/10 p-3 rounded-lg flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+                    <span class="font-body-md text-body-md text-secondary font-medium">+23.4% lift · p=0.003 · n=1,847</span>
+                </div>
+            </div>
+            <div class="glass-card rounded-lg p-card-stat-p">
+                <span class="font-badge text-badge uppercase text-on-surface-variant block mb-6">SKILL METADATA</span>
+                <div class="space-y-5">
+                    <div class="flex justify-between items-start">
+                        <span class="text-on-surface-variant font-body-md text-body-md">Trigger Pattern</span>
+                        <span class="font-mono text-on-surface font-medium text-body-md text-right">lead.convert + geo.mismatch</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-on-surface-variant font-body-md text-body-md">Origin Cluster</span>
+                        <span class="text-error font-medium text-body-md">#FC-0847 <span class="text-[10px] ml-1">(14 failures)</span></span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-on-surface-variant font-body-md text-body-md">Generated By</span>
+                        <span class="text-on-surface font-medium text-body-md">Claude 3.5 + Mistral-7B</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-on-surface-variant font-body-md text-body-md">Safety Score</span>
+                        <span class="text-secondary font-bold text-body-md">98.7% <span class="font-label-sm text-[10px] ml-1 text-on-surface-variant">(NeMo + garak)</span></span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-on-surface-variant font-body-md text-body-md">Temporal Workflow</span>
+                        <a class="text-secondary hover:underline font-medium text-body-md" href="#">wf-evo-0847-v3</a>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-on-surface-variant font-body-md text-body-md">Avg Latency</span>
+                        <span class="text-on-surface font-medium text-body-md">142ms <span class="text-on-surface-variant font-label-sm text-[10px] ml-2">p50 • 380ms p99</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-3 glass-card rounded-lg overflow-hidden">
+                <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
+                    <span class="font-badge text-badge uppercase text-on-surface-variant">VERSION HISTORY — 4 VERSIONS · 3 ANCESTORS</span>
+                    <button class="text-secondary font-label-sm text-label-sm hover:underline">Download CSV</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/5 bg-surface-container-low/50">
+                                <th class="p-card-row-p font-badge text-badge uppercase text-on-surface-variant">VERSION</th>
+                                <th class="p-card-row-p font-badge text-badge uppercase text-on-surface-variant">STATUS</th>
+                                <th class="p-card-row-p font-badge text-badge uppercase text-on-surface-variant">CREATED</th>
+                                <th class="p-card-row-p font-badge text-badge uppercase text-on-surface-variant">METHOD</th>
+                                <th class="p-card-row-p font-badge text-badge uppercase text-on-surface-variant">PERFORMANCE</th>
+                                <th class="p-card-row-p font-badge text-badge uppercase text-on-surface-variant">ANCESTOR</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            <tr class="hover:bg-white/[0.02] transition-colors group cursor-pointer">
+                                <td class="p-card-row-p font-bold text-on-surface font-mono">v3.2.1</td>
+                                <td class="p-card-row-p">
+                                    <span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded font-badge text-badge uppercase">Production</span>
+                                </td>
+                                <td class="p-card-row-p text-on-surface-variant font-body-md text-body-md">2h ago</td>
+                                <td class="p-card-row-p text-on-surface-variant font-body-md text-body-md">EvoForge + review</td>
+                                <td class="p-card-row-p">
+                                    <div class="flex items-center gap-sm">
+                                        <div class="flex-1 h-1.5 w-24 bg-surface-container-highest rounded-full overflow-hidden">
+                                            <div class="h-full bg-secondary" style="width: 84.6%"></div>
+                                        </div>
+                                        <span class="text-secondary font-bold text-body-md">84.6%</span>
+                                    </div>
+                                </td>
+                                <td class="p-card-row-p text-on-surface-variant font-mono text-body-md">v3.1.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Workflows Section (admin_temporal_workflows.html view integrated) -->
+<div id="workflows-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px]">
+    <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-surface-dim/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-secondary font-bold">account_tree</span>
+            <h1 class="font-display text-headline-md font-bold tracking-tighter text-secondary">Workflows</h1>
+        </div>
+        <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
+    </header>
+    <main class="flex-1 min-h-[calc(100vh-4rem)] bg-background relative flex flex-col md:flex-row overflow-hidden">
+        <section class="flex-1 p-6 overflow-y-auto custom-scrollbar">
+            <div class="mb-8">
+                <h3 class="font-headline-lg text-2xl text-on-surface mb-1">Temporal Workflows</h3>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                        <span class="font-label-sm text-label-sm text-on-surface">8 Active</span>
+                    </div>
+                    <span class="text-white/10 text-xs">|</span>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant" style="color: rgb(168, 208, 141);">142 completed</span>
+                    <span class="text-white/10 text-xs">|</span>
+                    <span class="font-label-sm text-label-sm text-error">1 failure today</span>
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="grid grid-cols-6 px-4 text-on-surface-variant font-label-sm text-[10px] uppercase tracking-widest opacity-50 mb-2">
+                    <div class="col-span-2">Workflow ID</div>
+                    <div>Type</div>
+                    <div>Status</div>
+                    <div>Duration</div>
+                    <div>Skill Registry</div>
+                </div>
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#141819] glass-border rounded-lg items-center border-l-3 border-[#5ce0d0] group hover:bg-[#1c2021] transition-all cursor-pointer">
+                    <div class="col-span-2 font-body-md text-body-md text-secondary font-bold">wf-evo-0912-v2</div>
+                    <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
+                    <div>
+                        <span class="inline-flex items-center bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-secondary/20">
+                            <span class="w-1 h-1 rounded-full bg-secondary mr-1.5 animate-pulse-subtle"></span>Running
+                        </span>
+                    </div>
+                    <div class="font-body-md text-body-md text-on-surface-variant">4h 12m</div>
+                    <div class="font-body-md text-body-md text-on-surface truncate pr-4">multi-thread-gap-detector</div>
+                </div>
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#141819] glass-border rounded-lg items-center group hover:bg-[#1c2021] transition-all cursor-pointer">
+                    <div class="col-span-2 font-body-md text-body-md text-on-surface/80">wf-ab-retail-exp</div>
+                    <div class="font-body-md text-body-md text-on-surface">A/B Test</div>
+                    <div>
+                        <span class="inline-flex items-center bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-secondary/20 opacity-70">Running</span>
+                    </div>
+                    <div class="font-body-md text-body-md text-on-surface-variant">2d 6h</div>
+                    <div class="font-body-md text-body-md text-on-surface truncate pr-4">expansion-retail-to-pers</div>
+                </div>
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#141819] glass-border rounded-lg items-center group hover:bg-[#1c2021] transition-all cursor-pointer">
+                    <div class="col-span-2 font-body-md text-body-md text-on-surface/80">wf-evo-0847-v3</div>
+                    <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
+                    <div>
+                        <span class="inline-flex items-center bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-primary/20">Completed</span>
+                    </div>
+                    <div class="font-body-md text-body-md text-on-surface-variant">4h 23m</div>
+                    <div class="font-body-md text-body-md text-on-surface truncate pr-4">lead-routing-geo-industry</div>
+                </div>
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#141819] glass-border rounded-lg items-center group hover:bg-[#1c2021] transition-all cursor-pointer">
+                    <div class="col-span-2 font-body-md text-body-md text-error/80">wf-evo-0899-v2</div>
+                    <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
+                    <div>
+                        <span class="inline-flex items-center bg-error/10 text-error px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-error/20">Failed</span>
+                    </div>
+                    <div class="font-body-md text-body-md text-on-surface-variant">1h 45m</div>
+                    <div class="font-body-md text-body-md text-on-surface truncate pr-4">opp-dedup-fuzzy-match</div>
+                </div>
+            </div>
+        </section>
+        <aside class="w-full md:w-[380px] bg-surface-container-low border-l border-white/5 flex flex-col p-6 overflow-y-auto custom-scrollbar">
+            <div class="mb-8">
+                <div class="flex justify-between items-start mb-3">
+                    <h4 class="font-headline-md text-label-sm font-bold text-on-surface uppercase tracking-wider">Workflow Detail</h4>
+                    <span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-secondary/20">Running</span>
+                </div>
+                <div class="bg-[#141819] border border-white/5 p-3 rounded-lg flex justify-between items-center">
+                    <code class="text-secondary font-mono text-[10px] font-bold">WF-EVO-0912-V2</code>
+                    <span class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-tighter opacity-70">4h 12m elapsed</span>
+                </div>
+            </div>
+            <div class="flex-1 space-y-0 relative ml-2 border-l border-white/10">
+                <div class="relative pl-8 pb-8">
+                    <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-background"></div>
+                    <div class="flex flex-col">
+                        <span class="font-body-md text-body-md text-on-surface font-bold">Trace Captured</span>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="font-label-sm text-[11px] text-on-surface-variant">t₀ • 4h 12m ago</span>
+                            <span class="text-white/10">•</span>
+                            <span class="font-label-sm text-[11px] text-primary">847 events</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative pl-8 pb-8">
+                    <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-background"></div>
+                    <div class="flex flex-col">
+                        <span class="font-body-md text-body-md text-on-surface font-bold">Skill Generated</span>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="font-label-sm text-[11px] text-on-surface-variant">t₂ • 3h 20m ago</span>
+                            <span class="text-white/10">•</span>
+                            <span class="font-label-sm text-[11px] text-secondary">Claude + Mistral-7B</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative pl-8 pb-8">
+                    <div class="absolute left-[-5.5px] top-1 w-2.5 h-2.5 rounded-full bg-secondary ring-4 ring-secondary/20 animate-pulse-subtle"></div>
+                    <div class="flex flex-col">
+                        <span class="font-body-md text-body-md text-secondary font-bold">A/B Test: Shadow Phase</span>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="font-label-sm text-[11px] text-secondary/70 italic">t₄ • processing</span>
+                            <span class="text-white/10">•</span>
+                            <span class="font-label-sm text-[11px] text-on-surface-variant">n=234 / 500 target</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative pl-8 pb-8 opacity-30">
+                    <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-on-surface-variant ring-2 ring-background"></div>
+                    <div class="flex flex-col">
+                        <span class="font-body-md text-body-md text-on-surface">Live Split Deployment</span>
+                        <span class="font-label-sm text-[11px] text-on-surface-variant mt-1">Awaiting shadow metrics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-auto pt-6">
+                <div class="bg-secondary/10 border border-secondary/20 p-6 rounded-lg shadow-[0_0_20px_rgba(92,224,208,0.05)] relative overflow-hidden">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-secondary text-[20px]">auto_awesome</span>
+                        <span class="font-label-sm text-label-sm uppercase font-bold tracking-widest text-secondary">ai recommendation</span>
+                    </div>
+                    <p class="font-body-md text-body-md leading-snug mb-4 lowercase text-on-surface">
+                        shadow phase performance exceeds baseline by 14%. recommendation: fast-track to live split.
+                    </p>
+                    <button class="w-full border border-secondary/30 font-bold py-2 rounded text-label-sm hover:bg-secondary/10 transition-all uppercase tracking-wider text-secondary bg-secondary/10">
+                        view shadow metrics
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </main>
+</div>
+
+<!-- Guardrails Section View -->
+<div id="guardrails-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px]">
+    <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-surface-dim/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-secondary font-bold">security</span>
+            <h1 class="font-display text-headline-md font-bold tracking-tighter text-secondary">Guardrails</h1>
+        </div>
+        <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
+    </header>
+    <main class="px-container-margin space-y-gap-md max-w-full pt-2 pb-20 flex-1">
+        <header class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
+            <div class="relative cursor-pointer">
+                <span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">notifications</span>
+                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-surface"></span>
+            </div>
+            <div class="cursor-pointer">
+                <span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">help</span>
+            </div>
+        </header>
+        <section class="space-y-1">
+            <h2 class="font-display text-headline-lg text-on-surface tracking-tight">Safety Guardrails</h2>
+            <p class="font-body-md text-on-surface-variant flex items-center gap-xs">
+                EvoForge Protection Layer · <span class="text-secondary/80">Last checked 5 min ago</span>
+            </p>
+        </section>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gap-md">
+            <div class="glass-card p-card-stat-p rounded-lg">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-display text-body-lg font-bold text-on-surface">Prompt Injection</h3>
+                    <span class="inline-flex items-center bg-primary-container/10 text-primary-container px-2 py-0.5 rounded font-badge text-badge uppercase border border-primary-container/20">Protected</span>
+                </div>
+                <p class="text-on-surface-variant font-body-md text-body-md mb-3">Detection & filtering of prompt injection attempts</p>
+                <div class="flex justify-between items-baseline pt-3 border-t border-white/5">
+                    <span class="text-on-surface-variant font-label-sm text-label-sm">Blocks today</span>
+                    <span class="text-headline-lg font-display text-primary-container">12</span>
+                </div>
+            </div>
+            <div class="glass-card p-card-stat-p rounded-lg">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-display text-body-lg font-bold text-on-surface">Data Leakage</h3>
+                    <span class="inline-flex items-center bg-primary-container/10 text-primary-container px-2 py-0.5 rounded font-badge text-badge uppercase border border-primary-container/20">Protected</span>
+                </div>
+                <p class="text-on-surface-variant font-body-md text-body-md mb-3">PII detection & redaction in outputs</p>
+                <div class="flex justify-between items-baseline pt-3 border-t border-white/5">
+                    <span class="text-on-surface-variant font-label-sm text-label-sm">Redactions today</span>
+                    <span class="text-headline-lg font-display text-primary-container">8</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Mobile Bottom Navigation -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 border-t border-white/5 bg-surface-container-low/95 backdrop-blur-xl">
+    <a class="flex flex-col items-center justify-center text-secondary transition-all active:scale-90" href="#" onclick="switchPage('dashboard'); return false;">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label-sm text-[10px] mt-1 uppercase">Dashboard</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all active:scale-90" href="#" onclick="switchPage('registry'); return false;">
+        <span class="material-symbols-outlined">psychology</span>
+        <span class="font-label-sm text-[10px] mt-1 uppercase">Registry</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all active:scale-90" href="#" onclick="switchPage('workflows'); return false;">
+        <span class="material-symbols-outlined">account_tree</span>
+        <span class="font-label-sm text-[10px] mt-1 uppercase">Workflows</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all active:scale-90" href="#" onclick="switchPage('guardrails'); return false;">
+        <span class="material-symbols-outlined">security</span>
+        <span class="font-label-sm text-[10px] mt-1 uppercase">Guardrails</span>
+    </a>
+</nav>
+
+<script>
+    // Cards interaction scaling
+    document.querySelectorAll('.glass-card').forEach(card => {
+        card.addEventListener('touchstart', () => {
+            card.style.transform = 'scale(0.99)';
+            card.style.transition = 'transform 0.1s ease';
+        });
+        card.addEventListener('touchend', () => {
+            card.style.transform = 'scale(1)';
+        });
+    });
+
+    // Page Switching Router Logic
+    function switchPage(page) {
+        const dashboardPage = document.getElementById('dashboard-page');
+        const registryPage = document.getElementById('registry-page');
+        const workflowsPage = document.getElementById('workflows-page');
+        const guardrailsPage = document.getElementById('guardrails-page');
+        const pages = [dashboardPage, registryPage, workflowsPage, guardrailsPage];
+        
+        pages.forEach(p => p.classList.add('hidden'));
+        
+        if (page === 'dashboard') {
+            dashboardPage.classList.remove('hidden');
+            updateSidebarActive(0);
+        } else if (page === 'registry') {
+            registryPage.classList.remove('hidden');
+            updateSidebarActive(1);
+        } else if (page === 'workflows') {
+            workflowsPage.classList.remove('hidden');
+            updateSidebarActive(2);
+        } else if (page === 'guardrails') {
+            guardrailsPage.classList.remove('hidden');
+            updateSidebarActive(3);
+        }
+    }
+    
+    function updateSidebarActive(index) {
+        document.querySelectorAll('aside a').forEach(link => {
+            link.classList.remove('bg-secondary/10', 'text-secondary', 'font-bold');
+            link.classList.add('text-on-surface-variant', 'hover:bg-surface-container-highest/30');
+        });
+        document.querySelectorAll('aside a')[index].classList.add('bg-secondary/10', 'text-secondary', 'font-bold');
+        document.querySelectorAll('aside a')[index].classList.remove('text-on-surface-variant', 'hover:bg-surface-container-highest/30');
+    }
+</script>
+</body>
+</html>

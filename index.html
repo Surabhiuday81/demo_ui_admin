@@ -104,6 +104,9 @@
             color: #e2e2e3;
             -webkit-font-smoothing: antialiased;
         }
+        html {
+            scroll-behavior: smooth;
+        }
         .custom-scrollbar::-webkit-scrollbar {
             width: 4px;
             height: 4px;
@@ -111,28 +114,138 @@
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #333536;
             border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4a4d4f;
         }
         .glass-card {
             background: #141819;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: #1a1e1f;
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
         }
         .glass-border {
             border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-border:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.01);
         }
         .ai-accent {
             border-left: 4px solid #5ce0d0;
             box-shadow: -10px 0 20px rgba(92, 224, 208, 0.03);
+            transition: all 0.3s ease;
+        }
+        .ai-accent:hover {
+            box-shadow: -10px 0 30px rgba(92, 224, 208, 0.08), 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         .sidebar-active {
             background-color: rgba(92, 224, 208, 0.1);
             color: #5ce0d0;
+            transition: all 0.3s ease;
         }
+        button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+        }
+        button:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        nav a {
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        nav a:hover {
+            transform: translateX(2px);
+        }
+        .cursor-pointer {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .cursor-pointer:hover {
+            background-color: rgba(255, 255, 255, 0.02) !important;
+        }
+        main {
+            animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-card:nth-child(1) { animation: slideInUp 0.4s ease-out 0.05s both; }
+        .glass-card:nth-child(2) { animation: slideInUp 0.4s ease-out 0.1s both; }
+        .glass-card:nth-child(3) { animation: slideInUp 0.4s ease-out 0.15s both; }
+        .glass-card:nth-child(4) { animation: slideInUp 0.4s ease-out 0.2s both; }
+        .glass-card:nth-child(5) { animation: slideInUp 0.4s ease-out 0.25s both; }
         @keyframes pulse-subtle {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
         }
         .animate-pulse-subtle {
             animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(92, 224, 208, 0); }
+            50% { box-shadow: 0 0 20px rgba(92, 224, 208, 0.2); }
+        }
+        .animate-glow {
+            animation: glow 3s ease-in-out infinite;
+        }
+        * {
+            transition-property: background-color, border-color, color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        .material-symbols-outlined {
+            transition: all 0.3s ease;
+        }
+        a:hover .material-symbols-outlined {
+            transform: scale(1.05) translateX(2px);
+        }
+        header {
+            backdrop-filter: blur(10px) saturate(180%);
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+        }
+        aside {
+            transition: all 0.3s ease;
+        }
+        .inline-flex {
+            transition: all 0.3s ease;
+        }
+        button:hover .inline-flex {
+            transform: scale(1.05);
+        }
+        tbody tr {
+            transition: all 0.2s ease;
+        }
+        tbody tr:hover {
+            background-color: rgba(92, 224, 208, 0.05);
+        }
+        a {
+            transition: all 0.3s ease;
+        }
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid rgba(92, 224, 208, 0.5);
+            outline-offset: 2px;
+        }
+        a.active {
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -713,7 +826,7 @@
 </nav>
 
 <script>
-    // Cards interaction scaling
+    // Enhanced card interaction scaling and effects
     document.querySelectorAll('.glass-card').forEach(card => {
         card.addEventListener('touchstart', () => {
             card.style.transform = 'scale(0.99)';
@@ -722,9 +835,25 @@
         card.addEventListener('touchend', () => {
             card.style.transform = 'scale(1)';
         });
+        card.addEventListener('mouseenter', () => {
+            card.style.cursor = 'pointer';
+        });
     });
 
-    // Page Switching Router Logic
+    // Enhanced button interactions
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('mousedown', () => {
+            button.style.transform = 'scale(0.98)';
+        });
+        button.addEventListener('mouseup', () => {
+            button.style.transform = 'scale(1)';
+        });
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'scale(1)';
+        });
+    });
+
+    // Page Switching Router Logic with smooth transitions
     function switchPage(page) {
         const dashboardPage = document.getElementById('dashboard-page');
         const registryPage = document.getElementById('registry-page');
@@ -732,31 +861,118 @@
         const guardrailsPage = document.getElementById('guardrails-page');
         const pages = [dashboardPage, registryPage, workflowsPage, guardrailsPage];
         
-        pages.forEach(p => p.classList.add('hidden'));
+        // Fade out transition
+        pages.forEach(p => {
+            if (p && !p.classList.contains('hidden')) {
+                p.style.opacity = '0';
+                p.style.transition = 'opacity 0.2s ease';
+            }
+        });
         
-        if (page === 'dashboard') {
-            dashboardPage.classList.remove('hidden');
-            updateSidebarActive(0);
-        } else if (page === 'registry') {
-            registryPage.classList.remove('hidden');
-            updateSidebarActive(1);
-        } else if (page === 'workflows') {
-            workflowsPage.classList.remove('hidden');
-            updateSidebarActive(2);
-        } else if (page === 'guardrails') {
-            guardrailsPage.classList.remove('hidden');
-            updateSidebarActive(3);
-        }
+        setTimeout(() => {
+            pages.forEach(p => p.classList.add('hidden'));
+            
+            if (page === 'dashboard') {
+                dashboardPage.classList.remove('hidden');
+                updateSidebarActive(0);
+            } else if (page === 'registry') {
+                registryPage.classList.remove('hidden');
+                updateSidebarActive(1);
+            } else if (page === 'workflows') {
+                workflowsPage.classList.remove('hidden');
+                updateSidebarActive(2);
+            } else if (page === 'guardrails') {
+                guardrailsPage.classList.remove('hidden');
+                updateSidebarActive(3);
+            }
+            
+            // Fade in transition
+            pages.forEach(p => {
+                if (!p.classList.contains('hidden')) {
+                    p.style.opacity = '0';
+                    setTimeout(() => {
+                        p.style.transition = 'opacity 0.3s ease';
+                        p.style.opacity = '1';
+                    }, 10);
+                }
+            });
+        }, 200);
     }
     
     function updateSidebarActive(index) {
-        document.querySelectorAll('aside a').forEach(link => {
+        document.querySelectorAll('aside a').forEach((link, i) => {
             link.classList.remove('bg-secondary/10', 'text-secondary', 'font-bold');
             link.classList.add('text-on-surface-variant', 'hover:bg-surface-container-highest/30');
+            if (i === index) {
+                link.style.transition = 'all 0.3s ease';
+            }
         });
-        document.querySelectorAll('aside a')[index].classList.add('bg-secondary/10', 'text-secondary', 'font-bold');
-        document.querySelectorAll('aside a')[index].classList.remove('text-on-surface-variant', 'hover:bg-surface-container-highest/30');
+        const activeLink = document.querySelectorAll('aside a')[index];
+        activeLink.classList.add('bg-secondary/10', 'text-secondary', 'font-bold');
+        activeLink.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-highest/30');
     }
+    
+    // Enhance table rows with smooth hover effects
+    document.querySelectorAll('tbody tr').forEach(row => {
+        row.addEventListener('mouseenter', () => {
+            row.style.backgroundColor = 'rgba(92, 224, 208, 0.05)';
+            row.style.transform = 'translateX(4px)';
+            row.style.transition = 'all 0.2s ease';
+        });
+        row.addEventListener('mouseleave', () => {
+            row.style.backgroundColor = '';
+            row.style.transform = 'translateX(0)';
+        });
+    });
+    
+    // Smooth scroll to section on navigation
+    document.querySelectorAll('nav a, aside a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href === '#') {
+                e.preventDefault();
+                const onclick = link.getAttribute('onclick');
+                if (onclick && onclick.includes('switchPage')) {
+                    setTimeout(() => {
+                        const main = document.querySelector('main:not(.hidden)');
+                        if (main) main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+                }
+            }
+        });
+    });
+    
+    // Intersection Observer for lazy animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.target.classList.contains('glass-card')) {
+                entry.target.style.animation = 'slideInUp 0.4s ease-out';
+            }
+        });
+    });
+    
+    document.querySelectorAll('.glass-card').forEach(card => observer.observe(card));
+    
+    // Header shadow on scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (header) {
+            clearTimeout(scrollTimeout);
+            if (window.scrollY > 0) {
+                header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
+            } else {
+                header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0)';
+            }
+        }
+    });
+    
+    // Animation on page load
+    window.addEventListener('load', () => {
+        document.querySelectorAll('main').forEach((main) => {
+            main.style.animation = 'fadeIn 0.4s ease-out';
+        });
+    });
 </script>
 </body>
 </html>

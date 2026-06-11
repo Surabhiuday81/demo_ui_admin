@@ -314,7 +314,6 @@
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden flex min-h-screen bg-[#050607]">
 
-<!-- Navigation Drawer (Sidebar) -->
 <aside class="w-[240px] h-full fixed left-0 top-0 border-r border-white/5 bg-[#050607] hidden lg:flex flex-col py-6 z-50">
     <div class="px-6 mb-8 flex items-center gap-3">
         <div class="w-9 h-9 bg-secondary/10 flex items-center justify-center rounded-xl border border-secondary/20">
@@ -354,7 +353,6 @@
     </div>
 </aside>
 
-<!-- Dashboard Page View -->
 <div class="flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]" id="dashboard-page">
     <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-[#050607]/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
         <div class="flex items-center gap-sm">
@@ -525,7 +523,6 @@
     </main>
 </div>
 
-<!-- Skill Registry Section -->
 <div id="registry-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
     <header class="bg-[#050607]/95 border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
@@ -537,7 +534,6 @@
                 <span class="material-symbols-outlined text-[20px]">help</span>
             </div>
         </div>
-        <!-- Removed logo box structure completely to satisfy clean view constraints[cite: 1] -->
         <div class="flex items-center justify-between gap-4">
             <div>
                 <h1 class="text-2xl font-bold text-on-surface">lead-routing-geo-industry</h1>
@@ -562,7 +558,6 @@
     </header>
 
     <main class="px-container-margin space-y-gap-md max-w-full pt-4 bg-[#050607]">
-        <!-- Code & Prompt Module Area (skills.json Payload) -->
         <div id="registry-code-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg p-5 flex flex-col gap-3">
                 <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -594,7 +589,6 @@
             </div>
         </div>
 
-        <!-- Overview Dashboard Panel Layout Area -->
         <div id="registry-overview-panel" class="grid grid-cols-1 lg:grid-cols-3 gap-gap-md">
             <div class="lg:col-span-2 glass-card rounded-lg p-card-stat-p flex flex-col">
                 <div class="flex items-center justify-between mb-6">
@@ -649,7 +643,6 @@
                 </div>
             </div>
             
-            <!-- Summary Table -->
             <div class="lg:col-span-3 glass-card rounded-lg overflow-hidden">
                 <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
                     <span class="font-badge text-badge uppercase text-on-surface-variant">VERSION HISTORY — 4 VERSIONS · 3 ANCESTORS</span>
@@ -725,7 +718,6 @@
             </div>
         </div>
 
-        <!-- Dedicated version journal pane -->
         <div id="registry-history-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg overflow-hidden">
                 <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
@@ -785,9 +777,8 @@
     </main>
 </div>
 
-<!-- Workflows Section -->
 <div id="workflows-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]">
-    <header class="bg-[#050607]/95 px-8 flex flex-col gap-4 shrink-0 py-4">
+    <header class="bg-[#050607]/95 px-8 flex flex-col gap-4 shrink-0 pt-2">
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">notifications</span>
@@ -809,7 +800,7 @@
     <main class="flex-1 min-h-screen bg-[#050607] relative flex flex-col md:flex-row overflow-hidden">
         <section class="flex-1 p-6 overflow-y-auto custom-scrollbar bg-[#050607]">
             <div class="mb-8">
-                <h3 class="font-headline-lg text-2xl text-on-surface mb-1">Temporal Workflows</h3>
+                <h2 class="text-2xl font-bold text-on-surface mb-1">Temporal Workflows</h2>
                 <div class="flex items-center gap-3">
                     <div class="flex items-center gap-1.5">
                         <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
@@ -926,9 +917,8 @@
     </main>
 </div>
 
-<!-- Guardrails Section View -->
 <div id="guardrails-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
-    <header class="bg-[#050607]/95 backdrop-blur-md border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
+    <header class="bg-[#050607]/95 border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">notifications</span>
@@ -960,7 +950,6 @@
 
     <main class="flex-1 p-8 space-y-8 bg-[#050607]">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Dynamic Candidate Promotion Criteria Sliders Component Integrated -->
             <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" id="criteria-panel">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-6 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">analytics</span>Candidate Promotion Criteria
@@ -1005,7 +994,6 @@
                 </div>
             </section>
 
-            <!-- Execution & Approval Controls -->
             <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" data-purpose="execution-controls">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">settings_input_component</span>Execution &amp; Approval Controls
@@ -1035,7 +1023,6 @@
             </section>
         </div>
 
-        <!-- Active Rails Table Section -->
         <section class="bg-[#16191b] rounded-lg border border-white/5 overflow-hidden" data-purpose="active-nemo-rails">
             <div class="p-6 border-b border-white/5 flex items-center justify-between">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
@@ -1072,7 +1059,6 @@
     </main>
 </div>
 
-<!-- Mobile Bottom Navigation -->
 <nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 border-t border-white/5 bg-surface-container-low/95 backdrop-blur-xl">
     <a class="flex flex-col items-center justify-center text-secondary transition-all active:scale-90" href="#" onclick="switchPage('dashboard'); return false;">
         <span class="material-symbols-outlined">dashboard</span>

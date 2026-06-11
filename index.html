@@ -103,10 +103,14 @@
         body {
             background-color: #050607;
             color: #e2e2e3;
+            font-family: 'Geist', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
         html {
             scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Hanken Grotesk', sans-serif;
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 4px;
@@ -153,6 +157,7 @@
             transition: all 0.3s ease;
         }
         button {
+            font-family: 'Geist', sans-serif;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         button:hover:not(:disabled) {
@@ -400,7 +405,7 @@
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Hit Rate</p>
                     <div class="flex flex-col">
                         <span class="text-headline-lg font-display text-on-surface leading-tight">56%</span>
-                        <span class="text-[10px] font-bold text-secondary mt-1 tracking-tight">+2.4% vs baseline</span>
+                        <span class="text-[10px] font-bold text-secondary mt-1 tracking-tight">2.4% vs baseline</span>
                     </div>
                 </div>
             </div>
@@ -505,35 +510,24 @@
 </div>
 
 <div id="registry-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
-    <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-[#050607]/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
-        <div class="flex items-center gap-sm">
-            <span class="material-symbols-outlined text-secondary font-bold">inventory_2</span>
-            <h1 class="font-display text-headline-md font-bold tracking-tighter text-secondary">Skill Registry</h1>
+    <header class="bg-[#050607]/95 border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
+        <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
+            <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-[20px]">notifications</span>
+                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-[#050607]"></span>
+            </div>
+            <div class="cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-[20px]">help</span>
+            </div>
         </div>
-        <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
-    </header>
-    <main class="px-container-margin space-y-gap-md max-w-full pt-2 bg-[#050607]">
-        <header class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
-            <div class="relative cursor-pointer">
-                <span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">notifications</span>
-                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-surface"></span>
-            </div>
-            <div class="cursor-pointer">
-                <span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">help</span>
-            </div>
-        </header>
-        <section class="flex flex-col lg:flex-row lg:items-center justify-between gap-md mb-2 ml-2">
-            <div class="flex items-start gap-md">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-md">
                 <div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary border border-secondary/20">
                     <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
                 </div>
-                <div class="ml-2">
-                    <div class="flex items-center gap-sm flex-wrap">
-                        <h3 class="font-display text-headline-lg text-on-surface">lead-routing-geo-industry</h3>
-                    </div>
-                    <p class="font-body-md text-body-md text-on-surface-variant mt-1">
-                        v3.2.1 • Lineage: 3 ancestors • 1,847 invocations
-                    </p>
+                <div>
+                    <h1 class="text-2xl font-bold text-on-surface">lead-routing-geo-industry</h1>
+                    <p class="text-sm text-on-surface-variant mt-1">v3.2.1 • Lineage: 3 ancestors • 1,847 invocations</p>
                 </div>
             </div>
             <div class="flex items-center gap-sm">
@@ -544,15 +538,17 @@
                     <span class="material-symbols-outlined text-lg">history</span>Rollback
                 </button>
             </div>
-        </section>
-        <div class="flex gap-md border-b border-white/5 mb-6">
+        </div>
+        <div class="flex gap-md border-b border-white/5 mt-2">
             <button class="px-4 py-3 text-[#5ce0d0] border-b-2 border-[#5ce0d0] font-bold text-body-md tab-btn" onclick="toggleRegistryTabs('overview')">Overview</button>
             <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('history')">Version History</button>
             <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('code')">Code &amp; Prompt</button>
             <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('eval')">Eval Results</button>
             <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('dependencies')">Dependencies</button>
         </div>
+    </header>
 
+    <main class="px-container-margin space-y-gap-md max-w-full pt-4 bg-[#050607]">
         <div id="registry-code-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg p-5 flex flex-col gap-3">
                 <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -913,7 +909,7 @@
 </div>
 
 <div id="guardrails-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
-    <header class="bg-[#050607]/95 px-8 flex flex-col gap-4 shrink-0 py-4">
+    <header class="bg-[#050607]/95 border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">notifications</span>

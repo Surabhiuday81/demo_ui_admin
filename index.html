@@ -113,7 +113,6 @@
             font-family: 'Hanken Grotesk', sans-serif;
             font-weight: 700 !important;
         }
-        /* Unified Global Font Sizes for Headings */
         h1 {
             font-size: 24px !important;
             line-height: 32px !important;
@@ -314,6 +313,7 @@
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden flex min-h-screen bg-[#050607]">
 
+<!-- Navigation Drawer (Sidebar) -->
 <aside class="w-[240px] h-full fixed left-0 top-0 border-r border-white/5 bg-[#050607] hidden lg:flex flex-col py-6 z-50">
     <div class="px-6 mb-8 flex items-center gap-3">
         <div class="w-9 h-9 bg-secondary/10 flex items-center justify-center rounded-xl border border-secondary/20">
@@ -353,6 +353,7 @@
     </div>
 </aside>
 
+<!-- Dashboard Page View -->
 <div class="flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]" id="dashboard-page">
     <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-[#050607]/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
         <div class="flex items-center gap-sm">
@@ -419,7 +420,7 @@
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Hit Rate</p>
                     <div class="flex flex-col">
                         <span class="text-headline-lg font-display text-on-surface leading-tight">56%</span>
-                        <span class="text-[10px] font-bold text-secondary mt-1 tracking-tight">2.4% vs baseline</span>
+                        <span class="text-[10px] font-bold text-secondary mt-1 tracking-tight">+2.4% vs baseline</span>
                     </div>
                 </div>
             </div>
@@ -523,6 +524,7 @@
     </main>
 </div>
 
+<!-- Skill Registry Section -->
 <div id="registry-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
     <header class="bg-[#050607]/95 border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
@@ -548,16 +550,18 @@
                 </button>
             </div>
         </div>
-        <div class="flex gap-md border-b border-white/5 mt-2">
-            <button class="px-4 py-3 text-[#5ce0d0] border-b-2 border-[#5ce0d0] font-bold text-body-md tab-btn" onclick="toggleRegistryTabs('overview')">Overview</button>
-            <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('history')">Version History</button>
-            <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('code')">Code &amp; Prompt</button>
-            <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('eval')">Eval Results</button>
-            <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('dependencies')">Dependencies</button>
+        <!-- Updated to use the premium Guardrail highlight effect configuration directly -->
+        <div class="flex gap-md border-b border-white/5 mt-2" id="registry-nav-tabs">
+            <button class="px-4 py-3 text-sm font-medium border-b-2 border-brand-accent text-brand-accent tab-btn" onclick="toggleRegistryTabs('overview', this)">Overview</button>
+            <button class="px-4 py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors tab-btn" onclick="toggleRegistryTabs('history', this)">Version History</button>
+            <button class="px-4 py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors tab-btn" onclick="toggleRegistryTabs('code', this)">Code &amp; Prompt</button>
+            <button class="px-4 py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('eval', this)">Eval Results</button>
+            <button class="px-4 py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('dependencies', this)">Dependencies</button>
         </div>
     </header>
 
     <main class="px-container-margin space-y-gap-md max-w-full pt-4 bg-[#050607]">
+        <!-- Code & Prompt Module Area (skills.json Payload) -->
         <div id="registry-code-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg p-5 flex flex-col gap-3">
                 <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -589,6 +593,7 @@
             </div>
         </div>
 
+        <!-- Overview Dashboard Panel Layout Area -->
         <div id="registry-overview-panel" class="grid grid-cols-1 lg:grid-cols-3 gap-gap-md">
             <div class="lg:col-span-2 glass-card rounded-lg p-card-stat-p flex flex-col">
                 <div class="flex items-center justify-between mb-6">
@@ -643,6 +648,7 @@
                 </div>
             </div>
             
+            <!-- Summary Table -->
             <div class="lg:col-span-3 glass-card rounded-lg overflow-hidden">
                 <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
                     <span class="font-badge text-badge uppercase text-on-surface-variant">VERSION HISTORY — 4 VERSIONS · 3 ANCESTORS</span>
@@ -718,6 +724,7 @@
             </div>
         </div>
 
+        <!-- Dedicated version journal pane -->
         <div id="registry-history-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg overflow-hidden">
                 <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
@@ -777,9 +784,10 @@
     </main>
 </div>
 
+<!-- Workflows Section -->
 <div id="workflows-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]">
-    <header class="bg-[#050607]/95 px-8 flex flex-col gap-4 shrink-0 pt-2">
-        <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
+    <header class="bg-[#050607]/95 px-8 flex flex-col gap-4 shrink-0 py-4">
+        <div class="flex items-center justify-end px-1.5 py-2 border-b border-white/10 gap-4 shrink-0">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">notifications</span>
                 <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-[#050607]"></span>
@@ -917,6 +925,7 @@
     </main>
 </div>
 
+<!-- Guardrails Section View -->
 <div id="guardrails-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
     <header class="bg-[#050607]/95 border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
@@ -950,6 +959,7 @@
 
     <main class="flex-1 p-8 space-y-8 bg-[#050607]">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Dynamic Candidate Promotion Criteria Sliders Component Integrated -->
             <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" id="criteria-panel">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-6 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">analytics</span>Candidate Promotion Criteria
@@ -994,6 +1004,7 @@
                 </div>
             </section>
 
+            <!-- Execution & Approval Controls -->
             <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" data-purpose="execution-controls">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">settings_input_component</span>Execution &amp; Approval Controls
@@ -1023,6 +1034,7 @@
             </section>
         </div>
 
+        <!-- Active Rails Table Section -->
         <section class="bg-[#16191b] rounded-lg border border-white/5 overflow-hidden" data-purpose="active-nemo-rails">
             <div class="p-6 border-b border-white/5 flex items-center justify-between">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
@@ -1059,6 +1071,7 @@
     </main>
 </div>
 
+<!-- Mobile Bottom Navigation -->
 <nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 border-t border-white/5 bg-surface-container-low/95 backdrop-blur-xl">
     <a class="flex flex-col items-center justify-center text-secondary transition-all active:scale-90" href="#" onclick="switchPage('dashboard'); return false;">
         <span class="material-symbols-outlined">dashboard</span>
@@ -1094,16 +1107,25 @@
         button.addEventListener('mouseleave', () => { button.style.transform = 'scale(1)'; });
     });
 
-    function toggleRegistryTabs(tabType) {
+    // Synced highlight effect logic configured for all registry tabs
+    function toggleRegistryTabs(tabType, clickedTabButton) {
         const overviewPanel = document.getElementById('registry-overview-panel');
         const codePanel = document.getElementById('registry-code-panel');
         const historyPanel = document.getElementById('registry-history-panel');
-        const buttons = document.querySelectorAll('.tab-btn');
         
-        buttons.forEach(btn => {
-            btn.classList.remove('text-[#5ce0d0]', 'border-[#5ce0d0]', 'font-bold');
+        // Target sub-tab buttons layout hierarchy
+        const tabButtons = document.querySelectorAll('#registry-nav-tabs .tab-btn');
+        
+        tabButtons.forEach(btn => {
+            btn.classList.remove('border-brand-accent', 'text-brand-accent', 'font-bold');
             btn.classList.add('text-on-surface-variant', 'border-transparent', 'font-medium');
         });
+
+        // Set the active states on click
+        if (clickedTabButton) {
+            clickedTabButton.classList.remove('text-on-surface-variant', 'border-transparent', 'font-medium');
+            clickedTabButton.classList.add('border-brand-accent', 'text-brand-accent', 'font-bold');
+        }
 
         overviewPanel.classList.add('hidden');
         codePanel.classList.add('hidden');
@@ -1111,23 +1133,20 @@
 
         if (tabType === 'code') {
             codePanel.classList.remove('hidden');
-            buttons[2].classList.add('text-[#5ce0d0]', 'border-[#5ce0d0]', 'font-bold');
         } else if (tabType === 'overview') {
             overviewPanel.classList.remove('hidden');
-            buttons[0].classList.add('text-[#5ce0d0]', 'border-[#5ce0d0]', 'font-bold');
         } else if (tabType === 'history') {
             historyPanel.classList.remove('hidden');
-            buttons[1].classList.add('text-[#5ce0d0]', 'border-[#5ce0d0]', 'font-bold');
         }
     }
 
     function handleToggleClick(selectedTab) {
         document.querySelectorAll('.toggle-tab').forEach(tab => {
-            tab.classList.remove('border-brand-accent', 'text-brand-accent');
-            tab.classList.add('text-on-surface-variant', 'border-transparent', 'hover:text-on-surface');
+            tab.classList.remove('border-brand-accent', 'text-brand-accent', 'font-bold');
+            tab.classList.add('text-on-surface-variant', 'border-transparent', 'hover:text-on-surface', 'font-medium');
         });
-        selectedTab.classList.remove('text-on-surface-variant', 'border-transparent', 'hover:text-on-surface');
-        selectedTab.classList.add('border-brand-accent', 'text-brand-accent');
+        selectedTab.classList.remove('text-on-surface-variant', 'border-transparent', 'hover:text-on-surface', 'font-medium');
+        selectedTab.classList.add('border-brand-accent', 'text-brand-accent', 'font-bold');
     }
 
     function switchPage(page) {
@@ -1152,7 +1171,8 @@
                 updateSidebarActive(0);
             } else if (page === 'registry') {
                 registryPage.classList.remove('hidden');
-                toggleRegistryTabs('overview');
+                const defaultTabBtn = document.querySelectorAll('#registry-nav-tabs .tab-btn')[0];
+                toggleRegistryTabs('overview', defaultTabBtn);
                 updateSidebarActive(1);
             } else if (page === 'workflows') {
                 workflowsPage.classList.remove('hidden');

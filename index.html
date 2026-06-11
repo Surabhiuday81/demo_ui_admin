@@ -444,7 +444,7 @@
         <section class="space-y-gap-sm pt-4">
             <div class="flex justify-between items-end px-1">
                 <h3 class="font-display text-headline-md text-on-surface">Recent Evolutions</h3>
-                <span class="text-secondary text-[10px] font-bold uppercase cursor-pointer hover:underline">View All</span>
+                <span class="text-secondary text-[10px] font-bold uppercase pointer hover:underline">View All</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-gap-sm">
                 <div class="glass-card ai-accent rounded-xl px-card-row-p py-3 flex flex-col justify-between min-h-[90px]" style="border-left-color: rgb(168, 208, 141);">
@@ -716,35 +716,6 @@
 </div>
 
 <div id="workflows-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]">
-    <header class="bg-[#050607]/95 backdrop-blur-md border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
-        <div class="flex items-center justify-end px-8 py-2 border-b border-white/10 gap-4 shrink-0">
-            <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
-                <span class="material-symbols-outlined text-[20px]">notifications</span>
-                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-[#121415]"></span>
-            </div>
-            <div class="cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
-                <span class="material-symbols-outlined text-[20px]">help</span>
-            </div>
-        </div>
-        <div class="flex items-center justify-between">
-            <div>
-                <h1 class="text-2xl font-bold text-on-surface">Temporal Orchestration</h1>
-                <p class="text-sm text-on-surface-variant mt-1">Monitor background trace loops and shadow evaluation metrics.</p>
-            </div>
-            <div class="flex gap-3">
-                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-lg text-sm font-bold text-secondary hover:bg-secondary/20">Config History</button>
-                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-lg text-sm font-bold text-secondary hover:bg-secondary/20">Refresh Logs</button>
-            </div>
-        </div>
-        <nav class="mt-2 overflow-x-auto no-scrollbar">
-            <div class="flex whitespace-nowrap gap-8">
-                <a class="toggle-tab py-3 text-sm font-medium border-b-2 border-brand-accent text-brand-accent" href="#">Active Processes</a>
-                <a class="toggle-tab py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#">Trace Archives</a>
-                <a class="toggle-tab py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#">Failure Logs</a>
-            </div>
-        </nav>
-    </header>
-
     <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-[#050607]/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
         <div class="flex items-center gap-sm">
             <span class="material-symbols-outlined text-secondary font-bold">account_tree</span>
@@ -752,7 +723,7 @@
         </div>
         <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
     </header>
-    <main class="flex-1 min-h-[calc(100vh-4rem)] bg-[#050607] relative flex flex-col md:flex-row overflow-hidden">
+    <main class="flex-1 min-h-screen bg-[#050607] relative flex flex-col md:flex-row overflow-hidden">
         <section class="flex-1 p-6 overflow-y-auto custom-scrollbar bg-[#050607]">
             <div class="mb-8">
                 <h3 class="font-headline-lg text-2xl text-on-surface mb-1">Temporal Workflows</h3>
@@ -868,21 +839,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-auto pt-6">
-                <div class="bg-secondary/10 border border-secondary/20 p-6 rounded-lg shadow-[0_0_20px_rgba(92,224,208,0.05)] relative overflow-hidden">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="material-symbols-outlined text-secondary text-[20px]">auto_awesome</span>
-                        <span class="font-label-sm text-label-sm uppercase font-bold tracking-widest text-secondary">ai recommendation</span>
-                    </div>
-                    <p class="font-body-md text-body-md leading-snug mb-4 lowercase text-on-surface">
-                        shadow phase performance exceeds baseline by 14%. recommendation: fast-track to live split.
-                    </p>
-                    <button class="w-full border border-secondary/30 font-bold py-2 rounded-lg text-label-sm hover:bg-secondary/10 transition-all uppercase tracking-wider text-secondary bg-secondary/10">
-                        view shadow metrics
-                    </button>
-                </div>
-            </div>
-        </aside>
+            </aside>
     </main>
 </div>
 
@@ -1063,13 +1020,11 @@
         button.addEventListener('mouseleave', () => { button.style.transform = 'scale(1)'; });
     });
 
-    // Cleaned Toggle Router for Sub-Tabs inside the Registry section
     function toggleRegistryTabs(tabType) {
         const overviewPanel = document.getElementById('registry-overview-panel');
         const codePanel = document.getElementById('registry-code-panel');
         const buttons = document.querySelectorAll('.tab-btn');
         
-        // Reset classes completely on all tabs
         buttons.forEach(btn => {
             btn.classList.remove('text-[#5ce0d0]', 'border-[#5ce0d0]', 'font-bold');
             btn.classList.add('text-on-surface-variant', 'border-transparent', 'font-medium');
@@ -1117,7 +1072,6 @@
                 updateSidebarActive(0);
             } else if (page === 'registry') {
                 registryPage.classList.remove('hidden');
-                // FIXED: Re-mapped destination target context default routing strictly back to 'overview'
                 toggleRegistryTabs('overview');
                 updateSidebarActive(1);
             } else if (page === 'workflows') {
@@ -1162,7 +1116,6 @@
         });
     });
 
-    // Global Interactive Range Sliders Event Bus Hook
     const sliders = [
         { input: 'slide-lift', value: 'val-lift', formatter: v => `+${v}%` },
         { input: 'slide-samples', value: 'val-samples', formatter: v => v },

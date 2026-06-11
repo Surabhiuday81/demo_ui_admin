@@ -78,13 +78,13 @@
                         "gap-sm": "8px"
                     },
                     "fontFamily": {
-                        "label-sm": ["Geist"],
-                        "body-md": ["Geist"],
-                        "headline-lg": ["Hanken Grotesk"],
-                        "headline-md": ["Hanken Grotesk"],
-                        "display": ["Hanken Grotesk"],
-                        "body-lg": ["Geist"],
-                        "badge": ["Geist"]
+                        "label-sm": ["Geist", "sans-serif"],
+                        "body-md": ["Geist", "sans-serif"],
+                        "headline-lg": ["Hanken Grotesk", "sans-serif"],
+                        "headline-md": ["Hanken Grotesk", "sans-serif"],
+                        "display": ["Hanken Grotesk", "sans-serif"],
+                        "body-lg": ["Geist", "sans-serif"],
+                        "badge": ["Geist", "sans-serif"]
                     },
                     "fontSize": {
                         "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
@@ -103,7 +103,11 @@
         body {
             background-color: #050607;
             color: #e2e2e3;
+            font-family: 'Geist', sans-serif;
             -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Hanken Grotesk', sans-serif !important;
         }
         html {
             scroll-behavior: smooth;
@@ -153,6 +157,7 @@
             transition: all 0.3s ease;
         }
         button {
+            font-family: 'Geist', sans-serif;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         button:hover:not(:disabled) {
@@ -309,19 +314,19 @@
     <nav class="flex-1 space-y-1 px-3">
         <a class="bg-secondary/10 text-secondary font-bold flex items-center px-4 py-2.5 transition-all rounded-lg" href="#" onclick="switchPage('dashboard')">
             <span class="material-symbols-outlined mr-3 text-[20px]">dashboard</span>
-            <span class="font-body-md text-body-md">Dashboard</span>
+            <span class="font-body-md text-body-md font-medium">Dashboard</span>
         </a>
         <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-xl group" href="#" onclick="switchPage('registry')">
             <span class="material-symbols-outlined mr-3 text-[20px]">inventory_2</span>
-            <span class="font-body-md text-body-md">Skill Registry</span>
+            <span class="font-body-md text-body-md font-medium">Skill Registry</span>
         </a>
         <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-xl group" href="#" onclick="switchPage('workflows')">
             <span class="material-symbols-outlined mr-3 text-[20px]">account_tree</span>
-            <span class="font-body-md text-body-md">Workflows</span>
+            <span class="font-body-md text-body-md font-medium">Workflows</span>
         </a>
         <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-xl group" href="#" onclick="switchPage('guardrails')">
             <span class="material-symbols-outlined mr-3 text-[20px]">gpp_maybe</span>
-            <span class="font-body-md text-body-md">Guardrails</span>
+            <span class="font-body-md text-body-md font-medium">Guardrails</span>
         </a>
     </nav>
     <div class="mt-auto px-4 py-4 border-t border-white/5">
@@ -329,7 +334,7 @@
             <div class="w-9 h-9 rounded-full overflow-hidden bg-secondary/20 flex items-center justify-center text-secondary font-bold border border-secondary/30 text-xs">NS</div>
             <div class="flex flex-col overflow-hidden">
                 <span class="font-body-md text-body-md font-bold text-on-surface truncate">Naresh Shah</span>
-                <span class="font-label-sm text-[10px] text-on-surface-variant uppercase">RevOps Lead</span>
+                <span class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider font-semibold">RevOps Lead</span>
             </div>
         </div>
     </div>
@@ -355,9 +360,9 @@
             </div>
         </header>
         <section class="space-y-1">
-            <h2 class="font-display text-headline-lg text-on-surface tracking-tight">Evolution Command Center</h2>
-            <p class="font-body-md text-on-surface-variant flex items-center gap-xs">
-                Grid Dynamics · <span class="text-secondary/80">Last updated 2 min ago</span>
+            <h2 class="font-display text-headline-lg font-bold text-on-surface tracking-tight">Evolution Command Center</h2>
+            <p class="font-body-md text-on-surface-variant flex items-center gap-xs font-normal">
+                Grid Dynamics · <span class="text-secondary/80 font-medium">Last updated 2 min ago</span>
             </p>
         </section>
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-gap-md">
@@ -367,8 +372,8 @@
                         <p class="text-[10px] font-bold uppercase text-on-surface-variant/50 tracking-widest">Active Skills</p>
                         <div class="flex items-baseline justify-between gap-2">
                             <div class="flex flex-col">
-                                <span class="text-display font-display text-on-surface">47</span>
-                                <span class="text-[10px] font-bold" style="color: rgb(168, 208, 141);">+6 since last month</span>
+                                <span class="text-display font-display font-bold text-on-surface">47</span>
+                                <span class="text-[10px] font-bold" style="color: rgb(168, 208, 141); fetch-lift">+6 since last month</span>
                             </div>
                         </div>
                     </div>
@@ -376,67 +381,67 @@
                 <div class="glass-card p-card-stat-p rounded-lg">
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Candidates</p>
                     <div class="flex flex-col">
-                        <span class="text-headline-lg font-display text-on-surface leading-tight">12</span>
-                        <span class="text-[10px] font-bold text-on-surface-variant"><span style="color: rgb(168, 208, 141);">3 approved</span> · <span class="text-error">2 rejected</span></span>
+                        <span class="text-headline-lg font-display font-bold text-on-surface leading-tight">12</span>
+                        <span class="text-[10px] font-bold text-on-surface-variant"><span style="color: rgb(168, 208, 141);" class="font-bold">3 approved</span> · <span class="text-error font-bold">2 rejected</span></span>
                     </div>
                 </div>
                 <div class="glass-card p-card-stat-p rounded-lg">
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Avg Improvement</p>
-                    <div class="flex flex-col"><span class="text-headline-lg font-display text-on-surface leading-tight">+18%</span><span class="text-[10px] font-bold" style="color: rgb(168, 208, 141);">+4.2pp vs prior</span></div>
+                    <div class="flex flex-col"><span class="text-headline-lg font-display font-bold text-on-surface leading-tight">+18%</span><span class="text-[10px] font-bold" style="color: rgb(168, 208, 141);">+4.2pp vs prior</span></div>
                 </div>
                 <div class="glass-card p-card-stat-p rounded-lg">
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">A/B Tests</p>
                     <div class="flex flex-col">
-                        <span class="text-headline-lg font-display text-on-surface leading-tight">4</span>
-                        <span class="text-[10px] font-bold text-on-surface-variant">2 shadow . 2 Live</span>
+                        <span class="text-headline-lg font-display font-bold text-on-surface leading-tight">4</span>
+                        <span class="text-[10px] font-bold text-on-surface-variant font-medium">2 shadow . 2 Live</span>
                     </div>
                 </div>
                 <div class="glass-card p-card-stat-p rounded-lg">
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Open Clusters</p>
                     <div class="flex flex-col">
-                        <span class="text-headline-lg font-display text-error leading-tight">3</span>
+                        <span class="text-headline-lg font-display font-bold text-error leading-tight">3</span>
                         <span class="text-error text-[10px] font-bold">1 Critical</span>
                     </div>
                 </div>
-                <div class="glass-card p-card-stat-p rounded-lg flex flex-col justify-between">
-                    <div>
-                        <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Hit Rate</p>
-                        <span class="text-headline-lg font-display text-on-surface leading-tight block">56%</span>
+                <div class="glass-card p-card-stat-p rounded-lg">
+                    <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Hit Rate</p>
+                    <div class="flex flex-col">
+                        <span class="text-headline-lg font-display font-bold text-on-surface leading-tight">56%</span>
+                        <span class="text-[10px] font-bold text-secondary mt-1 tracking-tight">+2.4% vs baseline</span>
                     </div>
-                    <span class="text-[10px] font-bold text-secondary mt-1 block">+2.4% vs baseline</span>
                 </div>
             </div>
             <div class="xl:col-span-5 flex flex-col h-full">
                 <div class="glass-card rounded-xl p-4 flex-1 flex flex-col">
                     <h3 class="font-display text-body-lg font-bold text-on-surface mb-4">Live Activity</h3>
-                    <div class="space-y-4 custom-scrollbar overflow-y-auto max-h-[340px] pr-2">
+                    <div class="space-y-4 custom-scrollbar overflow-y-auto max-h-[340px] pr-2 font-body-md text-body-md">
                         <div class="flex gap-gap-md">
                             <div class="mt-1 w-2 h-2 rounded-full flex-shrink-0 shadow-[0_0_8px_rgba(168,208,141,0.5)]" style="background-color: rgb(168, 208, 141);"></div>
                             <div class="space-y-0.5">
-                                <p class="text-[13px] text-on-surface leading-snug">Skill <span class="font-mono text-secondary" style="color: rgb(168, 208, 141);">lead-routing-geo-industry</span> v3.2.1 approved</p>
-                                <p class="text-[10px] text-muted-custom">2 min ago • RevOps</p>
+                                <p class="text-[13px] text-on-surface leading-snug font-normal">Skill <span class="font-mono font-bold text-secondary" style="color: rgb(168, 208, 141);">lead-routing-geo-industry</span> v3.2.1 approved</p>
+                                <p class="text-[10px] text-muted-custom font-medium">2 min ago • RevOps</p>
                             </div>
                         </div>
                         <div class="flex gap-gap-md">
                             <div class="mt-1 w-2 h-2 rounded-full bg-on-surface-variant/30 flex-shrink-0"></div>
                             <div class="space-y-0.5">
-                                <p class="text-[13px] text-on-surface leading-snug">A/B test started: <span class="font-mono">multi-thread-gap-detector</span></p>
-                                <p class="text-[10px] text-muted-custom">18 min ago • Temporal</p>
+                                <p class="text-[13px] text-on-surface-snug font-normal">A/B test started: <span class="font-mono font-medium">multi-thread-gap-detector</span></p>
+                                <p class="text-[10px] text-muted-custom font-medium">18 min ago • Temporal</p>
                             </div>
                         </div>
                         <div class="flex gap-gap-md">
                             <div class="mt-1 w-2 h-2 rounded-full bg-error flex-shrink-0 shadow-[0_0_8px_rgba(242,139,130,0.5)]"></div>
                             <div class="space-y-0.5">
-                                <p class="text-[13px] text-error leading-snug font-bold uppercase text-[11px]">Failure Cluster #FC-0934</p>
-                                <p class="text-[13px] text-on-surface">6 events in <span class="font-mono">forecast-q2-pipeline</span></p>
-                                <p class="text-[10px] text-muted-custom">42 min ago</p>
+                                <p class="text-[13px] text-error leading-snug font-bold uppercase text-[11px] tracking-wider">Failure Cluster #FC-0934</p>
+                                <p class="text-[13px] text-on-surface font-normal">6 events in <span class="font-mono font-medium">forecast-q2-pipeline</span></p>
+                                <p class="text-[10px] text-muted-custom font-medium">42 min ago</p>
                             </div>
                         </div>
                         <div class="flex gap-gap-md">
                             <div class="mt-1 w-2 h-2 rounded-full bg-on-surface-variant/30 flex-shrink-0"></div>
                             <div class="space-y-0.5">
-                                <p class="text-[13px] text-on-surface leading-snug">Candidate generated: <span class="font-mono">proposal-handoff-checklist</span></p>
-                                <p class="text-[10px] text-muted-custom">1h ago • EvoForge</p>
+                                <p class="text-[13px] text-on-surface leading-snug font-normal">Candidate generated: <span class="font-mono font-medium">proposal-handoff-checklist</span></p>
+                                <p class="text-[10px] text-muted-custom font-medium">1h ago • EvoForge</p>
                             </div>
                         </div>
                     </div>
@@ -445,60 +450,60 @@
         </div>
         <section class="space-y-gap-sm pt-4">
             <div class="flex justify-between items-end px-1">
-                <h3 class="font-display text-headline-md text-on-surface">Recent Evolutions</h3>
-                <span class="text-secondary text-[10px] font-bold uppercase pointer hover:underline">View All</span>
+                <h3 class="font-display text-headline-md font-bold text-on-surface">Recent Evolutions</h3>
+                <span class="text-secondary text-[10px] font-bold uppercase pointer hover:underline tracking-wider">View All</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-gap-sm">
                 <div class="glass-card ai-accent rounded-xl px-card-row-p py-3 flex flex-col justify-between min-h-[90px]" style="border-left-color: rgb(168, 208, 141);">
                     <div class="flex justify-between items-start">
                         <div class="min-w-0">
                             <p class="font-mono text-on-surface text-body-md font-bold truncate">lead-routing-geo-industry</p>
-                            <p class="text-[10px] text-muted-custom">v3.2.1 • Source #FC-0847 • 2h ago</p>
+                            <p class="text-[10px] text-muted-custom font-medium">v3.2.1 • Source #FC-0847 • 2h ago</p>
                         </div>
-                        <span class="bg-primary-container/10 text-primary-container text-badge font-badge uppercase px-2 py-0.5 rounded">Promoted</span>
+                        <span class="bg-primary-container/10 text-primary-container text-badge font-badge uppercase px-2 py-0.5 rounded font-bold text-[10px]">Promoted</span>
                     </div>
                     <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
-                        <span class="font-bold text-headline-md tracking-tight" style="color: rgb(168, 208, 141);">+23.4%</span>
-                        <span class="text-[10px] text-muted-custom">LIFT SCORE</span>
+                        <span class="font-bold text-headline-md font-display tracking-tight" style="color: rgb(168, 208, 141);">+23.4%</span>
+                        <span class="text-[10px] text-muted-custom font-bold tracking-widest">LIFT SCORE</span>
                     </div>
                 </div>
                 <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-white/10 rounded-lg">
                     <div class="flex justify-between items-start">
                         <div class="min-w-0">
                             <p class="font-mono text-on-surface text-body-md font-bold truncate">multi-thread-gap-detector</p>
-                            <p class="text-[10px] text-muted-custom">v2.1.0 • Source #FC-0912 • Shadow</p>
+                            <p class="text-[10px] text-muted-custom font-medium">v2.1.0 • Source #FC-0912 • Shadow</p>
                         </div>
-                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded">A/B Test</span>
+                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded font-bold text-[10px]">A/B Test</span>
                     </div>
                     <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
-                        <span class="text-on-surface font-bold text-headline-md tracking-tight">+18.0%*</span>
-                        <span class="text-[10px] text-muted-custom">PROJECTED</span>
+                        <span class="text-on-surface font-bold text-headline-md font-display tracking-tight">+18.0%*</span>
+                        <span class="text-[10px] text-muted-custom font-bold tracking-widest">PROJECTED</span>
                     </div>
                 </div>
                 <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-white/10 rounded-lg">
                     <div class="flex justify-between items-start">
                         <div class="min-w-0">
                             <p class="font-mono text-on-surface text-body-md font-bold truncate">proposal-handoff-checklist</p>
-                            <p class="text-[10px] text-muted-custom">v1.0.0 • Pre-Sales Queue • Pending</p>
+                            <p class="text-[10px] text-muted-custom font-medium">v1.0.0 • Pre-Sales Queue • Pending</p>
                         </div>
-                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded">Review</span>
+                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded font-bold text-[10px]">Review</span>
                     </div>
                     <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
-                        <span class="text-on-surface font-bold text-headline-md tracking-tight">Qual.</span>
-                        <span class="text-[10px] text-muted-custom">ANALYSIS</span>
+                        <span class="text-on-surface font-bold text-headline-md font-display tracking-tight">Qual.</span>
+                        <span class="text-[10px] text-muted-custom font-bold tracking-widest">ANALYSIS</span>
                     </div>
                 </div>
                 <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-error/50 rounded-lg">
                     <div class="flex justify-between items-start">
                         <div class="min-w-0">
                             <p class="font-mono text-on-surface/50 text-body-md font-bold line-through truncate">opp-dedup-fuzzy-match</p>
-                            <p class="text-[10px] text-muted-custom">v4.0.2 • Cluster #FC-0899 • Archived</p>
+                            <p class="text-[10px] text-muted-custom font-medium">v4.0.2 • Cluster #FC-0899 • Archived</p>
                         </div>
-                        <span class="bg-error/10 text-error text-badge font-badge uppercase px-2 py-0.5 rounded">Rejected</span>
+                        <span class="bg-error/10 text-error text-badge font-badge uppercase px-2 py-0.5 rounded font-bold text-[10px]">Rejected</span>
                     </div>
                     <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
-                        <span class="text-error/50 font-bold text-headline-md tracking-tight">-2.1%</span>
-                        <span class="text-[10px] text-muted-custom">VARIANCE</span>
+                        <span class="text-error/50 font-bold text-headline-md font-display tracking-tight">-2.1%</span>
+                        <span class="text-[10px] text-muted-custom font-bold tracking-widest">VARIANCE</span>
                     </div>
                 </div>
             </div>
@@ -532,9 +537,9 @@
                 </div>
                 <div class="ml-2">
                     <div class="flex items-center gap-sm flex-wrap">
-                        <h3 class="font-display text-headline-lg text-on-surface">lead-routing-geo-industry</h3>
+                        <h3 class="font-display text-headline-lg font-bold text-on-surface">lead-routing-geo-industry</h3>
                     </div>
-                    <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                    <p class="font-body-md text-body-md text-on-surface-variant mt-1 font-normal">
                         v3.2.1 • Lineage: 3 ancestors • 1,847 invocations
                     </p>
                 </div>
@@ -556,7 +561,7 @@
             <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md border-b-2 border-transparent tab-btn" onclick="toggleRegistryTabs('dependencies')">Dependencies</button>
         </div>
 
-        <!-- Code & Prompt Module Area (skills.json Payload) -->
+        <!-- Code & Prompt Module Area -->
         <div id="registry-code-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg p-5 flex flex-col gap-3">
                 <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -564,7 +569,7 @@
                         <span class="material-symbols-outlined text-secondary text-sm">data_object</span>
                         <span class="font-mono text-xs font-bold text-on-surface">skills.json</span>
                     </div>
-                    <span class="text-[10px] font-mono tracking-wider uppercase opacity-40 text-on-surface-variant">Read-only configuration modules</span>
+                    <span class="text-[10px] font-mono tracking-wider uppercase opacity-40 text-on-surface-variant font-medium">Read-only configuration modules</span>
                 </div>
                 <pre class="overflow-x-auto p-4 bg-[#010203] rounded-lg border border-white/5 font-mono text-xs text-[#a8d08d] custom-scrollbar leading-relaxed"><code>{
   "skill_id": "lead-routing-geo-industry",
@@ -592,53 +597,53 @@
         <div id="registry-overview-panel" class="grid grid-cols-1 lg:grid-cols-3 gap-gap-md">
             <div class="lg:col-span-2 glass-card rounded-lg p-card-stat-p flex flex-col">
                 <div class="flex items-center justify-between mb-6">
-                    <span class="font-badge text-badge uppercase text-on-surface-variant">A/B TEST RESULTS — V3.2.1 VS V3.1.0</span>
+                    <span class="font-badge text-badge uppercase text-on-surface-variant font-bold tracking-wider">A/B TEST RESULTS — V3.2.1 VS V3.1.0</span>
                     <span class="material-symbols-outlined text-on-surface-variant text-lg">info</span>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-6">
                     <div class="p-5 bg-gradient-to-b from-[#1a1d20] to-[#16191b] rounded-lg border border-white/5 relative group">
-                        <div class="absolute top-4 right-4 text-on-surface-variant font-label-sm text-label-sm">BASELINE V3.1.0</div>
+                        <div class="absolute top-4 right-4 text-on-surface-variant font-label-sm text-label-sm font-semibold tracking-wider">BASELINE V3.1.0</div>
                         <div class="mt-4">
                             <span class="font-display text-3xl leading-tight font-bold text-error">61.2%</span>
-                            <p class="text-on-surface-variant font-body-md text-body-md">acceptance rate</p>
+                            <p class="text-on-surface-variant font-body-md text-body-md font-normal">acceptance rate</p>
                         </div>
                     </div>
                     <div class="p-5 bg-gradient-to-b from-[#1a1d20] to-[#16191b] rounded-lg border relative group border-l-4 min-h-[110px]" style="border-left-color: rgb(168, 208, 141); box-shadow: -10px 0 20px rgba(168, 208, 141, 0.03);">
-                        <div class="absolute top-4 right-4 text-on-surface font-label-sm text-label-sm">CHALLENGER V3.2.1</div>
+                        <div class="absolute top-4 right-4 text-on-surface font-label-sm text-label-sm font-semibold tracking-wider">CHALLENGER V3.2.1</div>
                         <div class="mt-4"></div>
                     </div>
                 </div>
                 <div class="mt-auto bg-secondary/5 border border-secondary/10 p-3 rounded-lg flex items-center gap-sm">
                     <span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
-                    <span class="font-body-md text-body-md text-secondary font-medium">+23.4% lift · p=0.003 · n=1,847</span>
+                    <span class="font-body-md text-body-md text-secondary font-semibold">+23.4% lift · p=0.003 · n=1,847</span>
                 </div>
             </div>
             <div class="glass-card rounded-lg p-card-stat-p">
-                <span class="font-badge text-badge uppercase text-on-surface-variant block mb-6">SKILL METADATA</span>
-                <div class="space-y-5">
+                <span class="font-badge text-badge uppercase text-on-surface-variant block mb-6 font-bold tracking-wider">SKILL METADATA</span>
+                <div class="space-y-5 font-body-md text-body-md">
                     <div class="flex justify-between items-start">
-                        <span class="text-on-surface-variant font-body-md text-body-md">Trigger Pattern</span>
-                        <span class="font-mono text-on-surface font-medium text-body-md text-right">lead.convert + geo.mismatch</span>
+                        <span class="text-on-surface-variant font-normal">Trigger Pattern</span>
+                        <span class="font-mono text-on-surface font-medium text-right">lead.convert + geo.mismatch</span>
                     </div>
                     <div class="flex justify-between items-center">
-                        <span class="text-on-surface-variant font-body-md text-body-md">Origin Cluster</span>
-                        <span class="text-error font-medium text-body-md">#FC-0847 <span class="text-[10px] ml-1">(14 failures)</span></span>
+                        <span class="text-on-surface-variant font-normal">Origin Cluster</span>
+                        <span class="text-error font-semibold">#FC-0847 <span class="text-[10px] ml-1 font-bold">(14 failures)</span></span>
                     </div>
                     <div class="flex justify-between items-center">
-                        <span class="text-on-surface-variant font-body-md text-body-md">Generated By</span>
-                        <span class="text-on-surface font-medium text-body-md">Claude 3.5 + Mistral-7B</span>
+                        <span class="text-on-surface-variant font-normal">Generated By</span>
+                        <span class="text-on-surface font-semibold">Claude 3.5 + Mistral-7B</span>
                     </div>
                     <div class="flex justify-between items-center">
-                        <span class="text-on-surface-variant font-body-md text-body-md">Safety Score</span>
-                        <span class="text-secondary font-bold text-body-md">98.7% <span class="font-label-sm text-[10px] ml-1 text-on-surface-variant">(NeMo + garak)</span></span>
+                        <span class="text-on-surface-variant font-normal">Safety Score</span>
+                        <span class="text-secondary font-bold">98.7% <span class="font-label-sm text-[10px] ml-1 text-on-surface-variant font-medium">(NeMo + garak)</span></span>
                     </div>
                     <div class="flex justify-between items-center">
-                        <span class="text-on-surface-variant font-body-md text-body-md">Temporal Workflow</span>
-                        <a class="text-secondary hover:underline font-medium text-body-md" href="#">wf-evo-0847-v3</a>
+                        <span class="text-on-surface-variant font-normal">Temporal Workflow</span>
+                        <a class="text-secondary hover:underline font-semibold" href="#">wf-evo-0847-v3</a>
                     </div>
                     <div class="flex justify-between items-center">
-                        <span class="text-on-surface-variant font-body-md text-body-md">Avg Latency</span>
-                        <span class="text-on-surface font-medium text-body-md">142ms <span class="text-on-surface-variant font-label-sm text-[10px] ml-2">p50 • 380ms p99</span></span>
+                        <span class="text-on-surface-variant font-normal">Avg Latency</span>
+                        <span class="text-on-surface font-semibold">142ms <span class="text-on-surface-variant font-label-sm text-[10px] ml-2 font-medium">p50 • 380ms p99</span></span>
                     </div>
                 </div>
             </div>
@@ -646,13 +651,13 @@
             <!-- Summary Table -->
             <div class="lg:col-span-3 glass-card rounded-lg overflow-hidden">
                 <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
-                    <span class="font-badge text-badge uppercase text-on-surface-variant">VERSION HISTORY — 4 VERSIONS · 3 ANCESTORS</span>
-                    <button class="text-secondary font-label-sm text-label-sm hover:underline">Download CSV</button>
+                    <span class="font-badge text-badge uppercase text-on-surface-variant font-bold tracking-wider">VERSION HISTORY — 4 VERSIONS · 3 ANCESTORS</span>
+                    <button class="text-secondary font-label-sm text-label-sm font-bold hover:underline">Download CSV</button>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="border-b border-white/5 bg-[#050607] text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                            <tr class="border-b border-white/5 bg-[#050607] text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
                                 <th class="p-card-row-p">VERSION</th>
                                 <th class="p-card-row-p">STATUS</th>
                                 <th class="p-card-row-p">CREATED</th>
@@ -661,7 +666,7 @@
                                 <th class="p-card-row-p">ANCESTOR</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-white/5 font-body-md text-body-md text-on-surface">
+                        <tbody class="divide-y divide-white/5 font-body-md text-body-md text-on-surface font-normal">
                             <tr class="hover:bg-white/[0.02] transition-colors group cursor-pointer">
                                 <td class="p-card-row-p font-bold font-mono">v3.2.1</td>
                                 <td class="p-card-row-p">
@@ -723,13 +728,13 @@
         <div id="registry-history-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg overflow-hidden">
                 <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
-                    <span class="font-badge text-badge uppercase text-on-surface-variant">MASTER VERSION JOURNAL — ALL ITERATIONS</span>
-                    <span class="text-xs font-mono text-secondary">Total: 4 Archive Sets</span>
+                    <span class="font-badge text-badge uppercase text-on-surface-variant font-bold tracking-wider">MASTER VERSION JOURNAL — ALL ITERATIONS</span>
+                    <span class="text-xs font-mono text-secondary font-bold">Total: 4 Archive Sets</span>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="border-b border-white/5 bg-[#050607] text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                            <tr class="border-b border-white/5 bg-[#050607] text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
                                 <th class="px-6 py-4">Version String</th>
                                 <th class="px-6 py-4">Release Type</th>
                                 <th class="px-6 py-4">Timestamp</th>
@@ -738,37 +743,37 @@
                                 <th class="px-6 py-4">Direct Parent</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-white/5 font-body-md text-body-md text-on-surface">
+                        <tbody class="divide-y divide-white/5 font-body-md text-body-md text-on-surface font-normal">
                             <tr class="hover:bg-white/[0.02] transition-colors">
                                 <td class="px-6 py-4 font-bold font-mono text-secondary">v3.2.1</td>
-                                <td class="px-6 py-4"><span class="bg-[#1a2324] text-[#5ce0d0] px-2 py-0.5 rounded text-[10px] uppercase border border-[#5ce0d0]/20">Production</span></td>
+                                <td class="px-6 py-4"><span class="bg-[#1a2324] text-[#5ce0d0] px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-[#5ce0d0]/20">Production</span></td>
                                 <td class="px-6 py-4 text-on-surface-variant">2h ago</td>
                                 <td class="px-6 py-4">EvoForge + Human Review</td>
-                                <td class="px-6 py-4 font-bold text-secondary">+84.6%</td>
+                                <td class="px-6 py-4 font-bold text-secondary font-mono">+84.6%</td>
                                 <td class="px-6 py-4 font-mono text-on-surface-variant">v3.1.0</td>
                             </tr>
                             <tr class="hover:bg-white/[0.02] transition-colors">
                                 <td class="px-6 py-4 font-bold font-mono">v3.1.0</td>
-                                <td class="px-6 py-4"><span class="bg-[#222425] text-on-surface-variant px-2 py-0.5 rounded text-[10px] uppercase border border-white/5">Archived</span></td>
+                                <td class="px-6 py-4"><span class="bg-[#222425] text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-white/5">Archived</span></td>
                                 <td class="px-6 py-4 text-on-surface-variant">12d ago</td>
                                 <td class="px-6 py-4">EvoForge Automated Engine</td>
-                                <td class="px-6 py-4 font-medium text-on-surface-variant">+61.2%</td>
+                                <td class="px-6 py-4 font-medium text-on-surface-variant font-mono">+61.2%</td>
                                 <td class="px-6 py-4 font-mono text-on-surface-variant">v2.0.0</td>
                             </tr>
                             <tr class="hover:bg-white/[0.02] transition-colors">
                                 <td class="px-6 py-4 font-bold font-mono">v2.0.0</td>
-                                <td class="px-6 py-4"><span class="bg-[#222425] text-on-surface-variant px-2 py-0.5 rounded text-[10px] uppercase border border-white/5">Archived</span></td>
+                                <td class="px-6 py-4"><span class="bg-[#222425] text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-white/5">Archived</span></td>
                                 <td class="px-6 py-4 text-on-surface-variant">3mo ago</td>
                                 <td class="px-6 py-4">EvoForge + Delta Tuning</td>
-                                <td class="px-6 py-4 font-medium text-on-surface-variant">+55.0%</td>
+                                <td class="px-6 py-4 font-medium text-on-surface-variant font-mono">+55.0%</td>
                                 <td class="px-6 py-4 font-mono text-on-surface-variant">v1.0.0</td>
                             </tr>
                             <tr class="hover:bg-white/[0.02] transition-colors">
                                 <td class="px-6 py-4 font-bold font-mono">v1.0.0</td>
-                                <td class="px-6 py-4"><span class="bg-[#222425] text-on-surface-variant px-2 py-0.5 rounded text-[10px] uppercase border border-white/5">Archived</span></td>
+                                <td class="px-6 py-4"><span class="bg-[#222425] text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-white/5">Archived</span></td>
                                 <td class="px-6 py-4 text-on-surface-variant">5mo ago</td>
                                 <td class="px-6 py-4">Initial Synthetic Pipeline</td>
-                                <td class="px-6 py-4 font-medium text-on-surface-variant">+42.1%</td>
+                                <td class="px-6 py-4 font-medium text-on-surface-variant font-mono">+42.1%</td>
                                 <td class="px-6 py-4 font-mono text-on-surface-variant">None (Base)</td>
                             </tr>
                         </tbody>
@@ -781,9 +786,8 @@
 
 <!-- Workflows Section -->
 <div id="workflows-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]">
-    <!-- Fixed top wrapper: Cleaned double-border layout, matching other subviews natively -->
-    <header class="bg-[#050607]/95 px-8 flex flex-col gap-4 shrink-0 pt-4">
-        <div class="flex items-center justify-end px-1 py-4 border-b border-white/10 gap-4 shrink-0">
+    <header class="bg-[#050607]/95 px-8 flex flex-col gap-4 shrink-0 py-4">
+        <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">notifications</span>
                 <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-[#050607]"></span>
@@ -804,116 +808,116 @@
     <main class="flex-1 min-h-screen bg-[#050607] relative flex flex-col md:flex-row overflow-hidden">
         <section class="flex-1 p-6 overflow-y-auto custom-scrollbar bg-[#050607]">
             <div class="mb-8">
-                <h3 class="font-headline-lg text-2xl text-on-surface mb-1">Temporal Workflows</h3>
-                <div class="flex items-center gap-3">
+                <h3 class="font-display text-headline-lg font-bold text-on-surface mb-1">Temporal Workflows</h3>
+                <div class="flex items-center gap-3 font-body-md text-body-md">
                     <div class="flex items-center gap-1.5">
                         <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                        <span class="font-label-sm text-label-sm text-on-surface">8 Active</span>
+                        <span class="text-on-surface font-medium">8 Active</span>
                     </div>
                     <span class="text-white/10 text-xs">|</span>
-                    <span class="font-label-sm text-label-sm text-on-surface-variant" style="color: rgb(168, 208, 141);">142 completed</span>
+                    <span class="text-on-surface-variant font-medium" style="color: rgb(168, 208, 141);">142 completed</span>
                     <span class="text-white/10 text-xs">|</span>
-                    <span class="font-label-sm text-label-sm text-error">1 failure today</span>
+                    <span class="text-error font-medium">1 failure today</span>
                 </div>
             </div>
             <div class="space-y-3">
-                <div class="grid grid-cols-6 px-4 text-on-surface-variant font-label-sm text-[10px] uppercase tracking-widest opacity-50 mb-2">
+                <div class="grid grid-cols-6 px-4 text-on-surface-variant font-label-sm text-[10px] uppercase tracking-widest opacity-50 mb-2 font-bold">
                     <div class="col-span-2">Workflow ID</div>
                     <div>Type</div>
                     <div>Status</div>
                     <div>Duration</div>
                     <div>Skill Registry</div>
                 </div>
-                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center border-l-3 border-[#5ce0d0] group hover:bg-[#1f2326] transition-all cursor-pointer">
-                    <div class="col-span-2 font-body-md text-body-md text-secondary font-bold">wf-evo-0912-v2</div>
-                    <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center border-l-3 border-[#5ce0d0] group hover:bg-[#1f2326] transition-all cursor-pointer font-body-md text-body-md">
+                    <div class="col-span-2 text-secondary font-bold font-mono">wf-evo-0912-v2</div>
+                    <div class="text-on-surface font-normal">Skill Evolution</div>
                     <div>
                         <span class="inline-flex items-center bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-secondary/20">
                             <span class="w-1 h-1 rounded-full bg-secondary mr-1.5 animate-pulse-subtle"></span>Running
                         </span>
                     </div>
-                    <div class="font-body-md text-body-md text-on-surface-variant">4h 12m</div>
-                    <div class="font-body-md text-body-md text-on-surface truncate pr-4">multi-thread-gap-detector</div>
+                    <div class="text-on-surface-variant font-medium">4h 12m</div>
+                    <div class="text-on-surface truncate pr-4 font-medium">multi-thread-gap-detector</div>
                 </div>
-                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center group hover:bg-[#1f2326] transition-all cursor-pointer">
-                    <div class="col-span-2 font-body-md text-body-md text-on-surface/80">wf-ab-retail-exp</div>
-                    <div class="font-body-md text-body-md text-on-surface">A/B Test</div>
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center group hover:bg-[#1f2326] transition-all cursor-pointer font-body-md text-body-md">
+                    <div class="col-span-2 text-on-surface/80 font-medium font-mono">wf-ab-retail-exp</div>
+                    <div class="text-on-surface font-normal">A/B Test</div>
                     <div>
                         <span class="inline-flex items-center bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-secondary/20 opacity-70">Running</span>
                     </div>
-                    <div class="font-body-md text-body-md text-on-surface-variant">2d 6h</div>
-                    <div class="font-body-md text-body-md text-on-surface truncate pr-4">expansion-retail-to-pers</div>
+                    <div class="text-on-surface-variant font-medium">2d 6h</div>
+                    <div class="text-on-surface truncate pr-4 font-medium">expansion-retail-to-pers</div>
                 </div>
-                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center group hover:bg-[#1f2326] transition-all cursor-pointer">
-                    <div class="col-span-2 font-body-md text-body-md text-on-surface/80">wf-evo-0847-v3</div>
-                    <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center group hover:bg-[#1f2326] transition-all cursor-pointer font-body-md text-body-md">
+                    <div class="col-span-2 text-on-surface/80 font-medium font-mono">wf-evo-0847-v3</div>
+                    <div class="text-on-surface font-normal">Skill Evolution</div>
                     <div>
                         <span class="inline-flex items-center bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-primary/20">Completed</span>
                     </div>
-                    <div class="font-body-md text-body-md text-on-surface-variant">4h 23m</div>
-                    <div class="font-body-md text-body-md text-on-surface truncate pr-4">lead-routing-geo-industry</div>
+                    <div class="text-on-surface-variant font-medium">4h 23m</div>
+                    <div class="text-on-surface truncate pr-4 font-medium">lead-routing-geo-industry</div>
                 </div>
-                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center group hover:bg-[#1f2326] transition-all cursor-pointer">
-                    <div class="col-span-2 font-body-md text-body-md text-error/80">wf-evo-0899-v2</div>
-                    <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center group hover:bg-[#1f2326] transition-all cursor-pointer font-body-md text-body-md">
+                    <div class="col-span-2 text-error/80 font-medium font-mono">wf-evo-0899-v2</div>
+                    <div class="text-on-surface font-normal">Skill Evolution</div>
                     <div>
                         <span class="inline-flex items-center bg-error/10 text-error px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-error/20">Failed</span>
                     </div>
-                    <div class="font-body-md text-body-md text-on-surface-variant">1h 45m</div>
-                    <div class="font-body-md text-body-md text-on-surface truncate pr-4">opp-dedup-fuzzy-match</div>
+                    <div class="text-on-surface-variant font-medium">1h 45m</div>
+                    <div class="text-on-surface truncate pr-4 font-medium">opp-dedup-fuzzy-match</div>
                 </div>
             </div>
         </section>
         <aside class="w-full md:w-[380px] bg-[#050607] border-l border-white/5 flex flex-col p-6 overflow-y-auto custom-scrollbar">
             <div class="mb-8">
                 <div class="flex justify-between items-start mb-3">
-                    <h4 class="font-headline-md text-label-sm font-bold text-on-surface uppercase tracking-wider">Workflow Detail</h4>
+                    <h4 class="font-display text-body-lg font-bold text-on-surface uppercase tracking-wider">Workflow Detail</h4>
                     <span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-secondary/20">Running</span>
                 </div>
                 <div class="bg-[#16191b] border border-white/5 p-3 rounded-lg flex justify-between items-center">
                     <code class="text-secondary font-mono text-[10px] font-bold">WF-EVO-0912-V2</code>
-                    <span class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-tighter opacity-70">4h 12m elapsed</span>
+                    <span class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider font-semibold">4h 12m elapsed</span>
                 </div>
             </div>
-            <div class="flex-1 space-y-0 relative ml-2 border-l border-white/10">
+            <div class="flex-1 space-y-0 relative ml-2 border-l border-white/10 font-body-md text-body-md">
                 <div class="relative pl-8 pb-8">
                     <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-background"></div>
                     <div class="flex flex-col">
-                        <span class="font-body-md text-body-md text-on-surface font-bold">Trace Captured</span>
+                        <span class="text-on-surface font-bold">Trace Captured</span>
                         <div class="flex items-center gap-2 mt-1">
-                            <span class="font-label-sm text-[11px] text-on-surface-variant">t₀ • 4h 12m ago</span>
+                            <span class="font-label-sm text-[11px] text-on-surface-variant font-normal">t₀ • 4h 12m ago</span>
                             <span class="text-white/10">•</span>
-                            <span class="font-label-sm text-[11px] text-primary">847 events</span>
+                            <span class="font-label-sm text-[11px] text-primary font-bold">847 events</span>
                         </div>
                     </div>
                 </div>
                 <div class="relative pl-8 pb-8">
                     <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-background"></div>
                     <div class="flex flex-col">
-                        <span class="font-body-md text-body-md text-on-surface font-bold">Skill Generated</span>
+                        <span class="text-on-surface font-bold">Skill Generated</span>
                         <div class="flex items-center gap-2 mt-1">
-                            <span class="font-label-sm text-[11px] text-on-surface-variant">t₂ • 3h 20m ago</span>
+                            <span class="font-label-sm text-[11px] text-on-surface-variant font-normal">t₂ • 3h 20m ago</span>
                             <span class="text-white/10">•</span>
-                            <span class="font-label-sm text-[11px] text-secondary">Claude + Mistral-7B</span>
+                            <span class="font-label-sm text-[11px] text-secondary font-bold">Claude + Mistral-7B</span>
                         </div>
                     </div>
                 </div>
                 <div class="relative pl-8 pb-8">
                     <div class="absolute left-[-5.5px] top-1 w-2.5 h-2.5 rounded-full bg-secondary ring-4 ring-secondary/20 animate-pulse-subtle"></div>
                     <div class="flex flex-col">
-                        <span class="font-body-md text-body-md text-secondary font-bold">A/B Test: Shadow Phase</span>
+                        <span class="text-secondary font-bold">A/B Test: Shadow Phase</span>
                         <div class="flex items-center gap-2 mt-1">
-                            <span class="font-label-sm text-[11px] text-secondary/70 italic">t₄ • processing</span>
+                            <span class="font-label-sm text-[11px] text-secondary/70 italic font-medium">t₄ • processing</span>
                             <span class="text-white/10">•</span>
-                            <span class="font-label-sm text-[11px] text-on-surface-variant">n=234 / 500 target</span>
+                            <span class="font-label-sm text-[11px] text-on-surface-variant font-normal">n=234 / 500 target</span>
                         </div>
                     </div>
                 </div>
                 <div class="relative pl-8 pb-8 opacity-30">
                     <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-on-surface-variant ring-2 ring-background"></div>
                     <div class="flex flex-col">
-                        <span class="font-body-md text-body-md text-on-surface">Live Split Deployment</span>
-                        <span class="font-label-sm text-[11px] text-on-surface-variant mt-1">Awaiting shadow metrics</span>
+                        <span class="text-on-surface font-semibold">Live Split Deployment</span>
+                        <span class="font-label-sm text-[11px] text-on-surface-variant mt-1 font-normal">Awaiting shadow metrics</span>
                     </div>
                 </div>
             </div>
@@ -923,7 +927,7 @@
 
 <!-- Guardrails Section View -->
 <div id="guardrails-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
-    <header class="bg-[#050607]/95 backdrop-blur-md border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
+    <header class="bg-[#050607]/95 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex items-center justify-end px-8 py-2 border-b border-white/10 gap-4 shrink-0">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">notifications</span>
@@ -936,35 +940,34 @@
         <div class="flex items-center justify-between">
             <div>
                 <h1 class="text-2xl font-bold text-on-surface">Guardrails &amp; Approval Policies</h1>
-                <p class="text-sm text-on-surface-variant mt-1">Control automation limits and human approval requirements across workflows.</p>
+                <p class="text-sm text-on-surface-variant mt-1 font-normal">Control automation limits and human approval requirements across workflows.</p>
             </div>
             <div class="flex gap-3">
-                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-lg text-sm font-bold text-secondary transition-hover hover:bg-secondary/20">Import Config</button>
-                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-lg text-sm font-bold text-secondary transition-hover hover:bg-secondary/20">Save Changes</button>
+                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-lg text-sm font-bold text-secondary hover:bg-secondary/20 tracking-wide">Import Config</button>
+                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-lg text-sm font-bold text-secondary hover:bg-secondary/20 tracking-wide">Save Changes</button>
             </div>
         </div>
         <nav class="mt-2 overflow-x-auto no-scrollbar" data-purpose="navigation-tabs">
-            <div class="flex whitespace-nowrap gap-8">
-                <a class="toggle-tab py-3 text-sm font-medium border-b-2 border-brand-accent text-brand-accent" href="#" onclick="handleToggleClick(this)">Approval Thresholds</a>
-                <a class="toggle-tab py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#" onclick="handleToggleClick(this)">NeMo Rail Definitions</a>
-                <a class="toggle-tab py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#" onclick="handleToggleClick(this)">Safety Policies</a>
-                <a class="toggle-tab py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#" onclick="handleToggleClick(this)">Audit Log</a>
+            <div class="flex whitespace-nowrap gap-8 font-body-md text-body-md">
+                <a class="toggle-tab py-3 font-semibold border-b-2 border-brand-accent text-brand-accent" href="#" onclick="handleToggleClick(this)">Approval Thresholds</a>
+                <a class="toggle-tab py-3 font-semibold text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#" onclick="handleToggleClick(this)">NeMo Rail Definitions</a>
+                <a class="toggle-tab py-3 font-semibold text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#" onclick="handleToggleClick(this)">Safety Policies</a>
+                <a class="toggle-tab py-3 font-semibold text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#" onclick="handleToggleClick(this)">Audit Log</a>
             </div>
         </nav>
     </header>
 
     <main class="flex-1 p-8 space-y-8 bg-[#050607]">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Dynamic Candidate Promotion Criteria Sliders Component Integrated -->
             <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" id="criteria-panel">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-6 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">analytics</span>Candidate Promotion Criteria
                 </h3>
-                <div class="space-y-6">
+                <div class="space-y-6 font-body-md text-body-md">
                     <div class="space-y-2">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm font-medium text-on-surface">Min A/B Test Lift</span>
-                            <span class="text-sm font-bold text-brand-accent" id="val-lift">+15%</span>
+                            <span class="font-semibold text-on-surface">Min A/B Test Lift</span>
+                            <span class="font-bold text-brand-accent" id="val-lift">+15%</span>
                         </div>
                         <div class="relative w-full flex items-center">
                             <input class="w-full" id="slide-lift" max="50" min="0" type="range" value="15">
@@ -972,8 +975,8 @@
                     </div>
                     <div class="space-y-2">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm font-medium text-on-surface">Min Sample Size (n)</span>
-                            <span class="text-sm font-bold text-brand-accent" id="val-samples">500</span>
+                            <span class="font-semibold text-on-surface">Min Sample Size (n)</span>
+                            <span class="font-bold text-brand-accent" id="val-samples">500</span>
                         </div>
                         <div class="relative w-full flex items-center">
                             <input class="w-full" id="slide-samples" max="2000" min="100" step="50" type="range" value="500">
@@ -981,8 +984,8 @@
                     </div>
                     <div class="space-y-2">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm font-medium text-on-surface">Max p-value for Significance</span>
-                            <span class="text-sm font-bold text-brand-accent" id="val-pvalue">0.05</span>
+                            <span class="font-semibold text-on-surface">Max p-value for Significance</span>
+                            <span class="font-bold text-brand-accent" id="val-pvalue">0.05</span>
                         </div>
                         <div class="relative w-full flex items-center">
                             <input class="w-full" id="slide-pvalue" max="0.20" min="0.01" step="0.01" type="range" value="0.05">
@@ -990,8 +993,8 @@
                     </div>
                     <div class="space-y-2">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm font-medium text-on-surface">Min Safety Score (NeMo + garak)</span>
-                            <span class="text-sm font-bold text-brand-accent" id="val-safety">95%</span>
+                            <span class="font-semibold text-on-surface">Min Safety Score (NeMo + garak)</span>
+                            <span class="font-bold text-brand-accent" id="val-safety">95%</span>
                         </div>
                         <div class="relative w-full flex items-center">
                             <input class="w-full" id="slide-safety" max="100" min="70" type="range" value="95">
@@ -1000,16 +1003,15 @@
                 </div>
             </section>
 
-            <!-- Execution & Approval Controls -->
             <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" data-purpose="execution-controls">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">settings_input_component</span>Execution &amp; Approval Controls
                 </h3>
-                <div class="divide-y divide-white/5">
+                <div class="divide-y divide-white/5 font-body-md text-body-md">
                     <div class="flex items-start justify-between py-4 gap-4">
                         <div class="space-y-1">
-                            <p class="text-sm font-semibold text-on-surface leading-tight">Allow auto-apply for low-risk hygiene skills</p>
-                            <p class="text-xs text-on-surface-variant">Restricted to actions pre-approved by RevOps team members</p>
+                            <p class="font-semibold text-on-surface leading-tight">Allow auto-apply for low-risk hygiene skills</p>
+                            <p class="text-xs text-on-surface-variant font-normal">Restricted to actions pre-approved by RevOps team members</p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input checked="" class="sr-only peer" type="checkbox">
@@ -1018,8 +1020,8 @@
                     </div>
                     <div class="flex items-start justify-between py-4 gap-4">
                         <div class="space-y-1">
-                            <p class="text-sm font-semibold text-on-surface leading-tight">Auto-retire degraded skills</p>
-                            <p class="text-xs text-on-surface-variant">Moves losing candidates out of rotation automatically</p>
+                            <p class="font-semibold text-on-surface leading-tight">Auto-retire degraded skills</p>
+                            <p class="text-xs text-on-surface-variant font-normal">Moves losing candidates out of rotation automatically</p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input checked="" class="sr-only peer" type="checkbox">
@@ -1040,22 +1042,22 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm border-collapse">
                     <thead>
-                        <tr class="bg-surface-container-lowest text-[10px] font-bold text-on-surface-variant uppercase">
+                        <tr class="bg-surface-container-lowest text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
                             <th class="px-6 py-4">Rail Name</th>
                             <th class="px-6 py-4">Type</th>
                             <th class="px-6 py-4">Protection Domain</th>
                             <th class="px-6 py-4 text-right">Status</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-white/5">
+                    <tbody class="divide-y divide-white/5 font-body-md text-body-md text-on-surface">
                         <tr class="hover:bg-white/[0.02] transition-colors">
-                            <td class="px-6 py-4 font-semibold text-on-surface">no-delete-production-records</td>
+                            <td class="px-6 py-4 font-semibold">no-delete-production-records</td>
                             <td class="px-6 py-4">
                                 <span class="px-2.5 py-1 rounded-lg bg-error/10 text-error border border-error/20 text-[10px] font-bold uppercase">Block</span>
                             </td>
-                            <td class="px-6 py-4 text-on-surface-variant text-xs font-medium">Database Layer</td>
+                            <td class="px-6 py-4 text-on-surface-variant font-medium">Database Layer</td>
                             <td class="px-6 py-4 text-right">
-                                <span class="text-primary font-medium inline-flex items-center gap-2">
+                                <span class="text-primary font-bold inline-flex items-center gap-2">
                                     <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Active
                                 </span>
                             </td>
@@ -1071,19 +1073,19 @@
 <nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 border-t border-white/5 bg-surface-container-low/95 backdrop-blur-xl">
     <a class="flex flex-col items-center justify-center text-secondary transition-all active:scale-90" href="#" onclick="switchPage('dashboard'); return false;">
         <span class="material-symbols-outlined">dashboard</span>
-        <span class="font-label-sm text-[10px] mt-1 uppercase">Dashboard</span>
+        <span class="font-label-sm text-[10px] mt-1 uppercase font-bold tracking-wider">Dashboard</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all active:scale-90" href="#" onclick="switchPage('registry'); return false;">
         <span class="material-symbols-outlined">psychology</span>
-        <span class="font-label-sm text-[10px] mt-1 uppercase">Registry</span>
+        <span class="font-label-sm text-[10px] mt-1 uppercase font-bold tracking-wider">Registry</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all active:scale-90" href="#" onclick="switchPage('workflows'); return false;">
         <span class="material-symbols-outlined">account_tree</span>
-        <span class="font-label-sm text-[10px] mt-1 uppercase">Workflows</span>
+        <span class="font-label-sm text-[10px] mt-1 uppercase font-bold tracking-wider">Workflows</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all active:scale-90" href="#" onclick="switchPage('guardrails'); return false;">
         <span class="material-symbols-outlined">security</span>
-        <span class="font-label-sm text-[10px] mt-1 uppercase">Guardrails</span>
+        <span class="font-label-sm text-[10px] mt-1 uppercase font-bold tracking-wider">Guardrails</span>
     </a>
 </nav>
 
@@ -1103,6 +1105,7 @@
         button.addEventListener('mouseleave', () => { button.style.transform = 'scale(1)'; });
     });
 
+    // Cleaned Toggle Router for Sub-Tabs inside the Registry section
     function toggleRegistryTabs(tabType) {
         const overviewPanel = document.getElementById('registry-overview-panel');
         const codePanel = document.getElementById('registry-code-panel');

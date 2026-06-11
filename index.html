@@ -36,28 +36,28 @@
                         "secondary": "#5ce0d0",
                         "on-secondary-fixed-variant": "#005049",
                         "inverse-on-surface": "#2f3132",
-                        "surface-container-high": "#0a0c0d",
+                        "surface-container-high": "#16191b",
                         "primary-container": "#a8d08d",
                         "on-primary-fixed": "#092100",
                         "surface": "#050607",
                         "surface-tint": "#aad28f",
-                        "surface-container-highest": "#141617",
+                        "surface-container-highest": "#1a1d20",
                         "secondary-fixed-dim": "#56dbcb",
                         "on-tertiary": "#4a2800",
                         "inverse-surface": "#e2e2e3",
                         "on-secondary-container": "#003832",
-                        "surface-container text-on-surface": "#121415",
+                        "surface-container text-on-surface": "#16191b",
                         "on-primary": "#183805",
                         "background": "#050607",
                         "error-container": "#93000a",
                         "primary": "#c3eca7",
                         "tertiary-fixed-dim": "#ffb870",
-                        "surface-variant": "#141617",
+                        "surface-variant": "#1a1d20",
                         "tertiary": "#ffdab9",
                         "on-secondary-fixed": "#00201d",
                         "on-primary-fixed-variant": "#2e4f1a",
                         "primary-fixed-dim": "#aad28f",
-                        "surface-bright": "#1c1e1f",
+                        "surface-bright": "#222527",
                         "outline-variant": "#43493e",
                         "on-background": "#e2e2e3",
                         "muted-custom": "rgba(142, 152, 158, 0.6)",
@@ -113,31 +113,31 @@
             height: 4px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #141617;
+            background: #1a1d20;
             border-radius: 4px;
             transition: background 0.3s ease;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #1f2122;
+            background: #2b3034;
         }
         .glass-card {
-            background: #0a0c0d;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: #16191b;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-card:hover {
-            background: #101213;
-            border-color: rgba(255, 255, 255, 0.08);
+            background: #1f2326;
+            border-color: rgba(255, 255, 255, 0.12);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
             transform: translateY(-2px);
         }
         .glass-border {
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s ease;
         }
         .glass-border:hover {
-            border-color: rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.01);
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.02);
         }
         .ai-accent {
             border-left: 4px solid #5ce0d0;
@@ -174,7 +174,7 @@
             position: relative;
         }
         .cursor-pointer:hover {
-            background-color: rgba(255, 255, 255, 0.02) !important;
+            background-color: rgba(255, 255, 255, 0.04) !important;
         }
         main {
             animation: fadeIn 0.4s ease-out;
@@ -270,7 +270,7 @@
             outline: none;
         }
         input[type="range"]::-webkit-slider-runnable-track {
-            background: #141617;
+            background: #1a1d20;
             height: 6px;
             border-radius: 9999px;
         }
@@ -295,6 +295,7 @@
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden flex min-h-screen bg-[#050607]">
 
+<!-- Navigation Drawer (Sidebar) -->
 <aside class="w-[240px] h-full fixed left-0 top-0 border-r border-white/5 bg-[#050607] hidden lg:flex flex-col py-6 z-50">
     <div class="px-6 mb-8 flex items-center gap-3">
         <div class="w-9 h-9 bg-secondary/10 flex items-center justify-center rounded-xl border border-secondary/20">
@@ -306,7 +307,7 @@
         </div>
     </div>
     <nav class="flex-1 space-y-1 px-3">
-        <a class="bg-secondary/10 text-secondary font-bold flex items-center px-4 py-2.5 transition-all rounded-xl" href="#" onclick="switchPage('dashboard')">
+        <a class="bg-secondary/10 text-secondary font-bold flex items-center px-4 py-2.5 transition-all rounded-lg" href="#" onclick="switchPage('dashboard')">
             <span class="material-symbols-outlined mr-3 text-[20px]">dashboard</span>
             <span class="font-body-md text-body-md">Dashboard</span>
         </a>
@@ -324,7 +325,7 @@
         </a>
     </nav>
     <div class="mt-auto px-4 py-4 border-t border-white/5">
-        <div class="flex items-center gap-3 p-2 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer">
+        <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer">
             <div class="w-9 h-9 rounded-full overflow-hidden bg-secondary/20 flex items-center justify-center text-secondary font-bold border border-secondary/30 text-xs">NS</div>
             <div class="flex flex-col overflow-hidden">
                 <span class="font-body-md text-body-md font-bold text-on-surface truncate">Naresh Shah</span>
@@ -334,6 +335,7 @@
     </div>
 </aside>
 
+<!-- Dashboard Page View -->
 <div class="flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]" id="dashboard-page">
     <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-[#050607]/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
         <div class="flex items-center gap-sm">
@@ -360,7 +362,7 @@
         </section>
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-gap-md">
             <div class="xl:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-gap-sm">
-                <div class="glass-card p-card-stat-p rounded-xl">
+                <div class="glass-card p-card-stat-p rounded-lg">
                     <div class="flex flex-col gap-xs">
                         <p class="text-[10px] font-bold uppercase text-on-surface-variant/50 tracking-widest">Active Skills</p>
                         <div class="flex items-baseline justify-between gap-2">
@@ -371,32 +373,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="glass-card p-card-stat-p rounded-xl">
+                <div class="glass-card p-card-stat-p rounded-lg">
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Candidates</p>
                     <div class="flex flex-col">
                         <span class="text-headline-lg font-display text-on-surface leading-tight">12</span>
                         <span class="text-[10px] font-bold text-on-surface-variant"><span style="color: rgb(168, 208, 141);">3 approved</span> · <span class="text-error">2 rejected</span></span>
                     </div>
                 </div>
-                <div class="glass-card p-card-stat-p rounded-xl">
+                <div class="glass-card p-card-stat-p rounded-lg">
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Avg Improvement</p>
                     <div class="flex flex-col"><span class="text-headline-lg font-display text-on-surface leading-tight">+18%</span><span class="text-[10px] font-bold" style="color: rgb(168, 208, 141);">+4.2pp vs prior</span></div>
                 </div>
-                <div class="glass-card p-card-stat-p rounded-xl">
+                <div class="glass-card p-card-stat-p rounded-lg">
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">A/B Tests</p>
                     <div class="flex flex-col">
                         <span class="text-headline-lg font-display text-on-surface leading-tight">4</span>
                         <span class="text-[10px] font-bold text-on-surface-variant">2 shadow . 2 Live</span>
                     </div>
                 </div>
-                <div class="glass-card p-card-stat-p rounded-xl">
+                <div class="glass-card p-card-stat-p rounded-lg">
                     <p class="text-[10px] font-bold uppercase text-on-surface-variant mb-2">Open Clusters</p>
                     <div class="flex flex-col">
                         <span class="text-headline-lg font-display text-error leading-tight">3</span>
                         <span class="text-error text-[10px] font-bold">1 Critical</span>
                     </div>
                 </div>
-                <div class="glass-card relative overflow-hidden rounded-xl col-span-full sm:col-span-1 min-h-[100px] flex items-center px-4">
+                <div class="glass-card relative overflow-hidden rounded-lg col-span-full sm:col-span-1 min-h-[100px] flex items-center px-4">
                     <div class="z-10">
                         <h3 class="font-display text-body-lg font-bold text-on-surface leading-tight">Neural Evolution</h3>
                         <p class="text-on-surface-variant text-[10px] mt-1">v3.2.1 Lead Routing active.</p>
@@ -447,52 +449,52 @@
                 <span class="text-secondary text-[10px] font-bold uppercase cursor-pointer hover:underline">View All</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-gap-sm">
-                <div class="glass-card ai-accent rounded-xl px-card-row-p py-3 flex flex-col justify-between min-h-[90px]" style="border-left-color: rgb(168, 208, 141);">
+                <div class="glass-card ai-accent rounded-lg px-card-row-p py-3 flex flex-col justify-between min-h-[90px]" style="border-left-color: rgb(168, 208, 141);">
                     <div class="flex justify-between items-start">
                         <div class="min-w-0">
                             <p class="font-mono text-on-surface text-body-md font-bold truncate">lead-routing-geo-industry</p>
                             <p class="text-[10px] text-muted-custom">v3.2.1 • Source #FC-0847 • 2h ago</p>
                         </div>
-                        <span class="bg-primary-container/10 text-primary-container text-badge font-badge uppercase px-2 py-0.5 rounded-xl">Promoted</span>
+                        <span class="bg-primary-container/10 text-primary-container text-badge font-badge uppercase px-2 py-0.5 rounded">Promoted</span>
                     </div>
                     <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
                         <span class="font-bold text-headline-md tracking-tight" style="color: rgb(168, 208, 141);">+23.4%</span>
                         <span class="text-[10px] text-muted-custom">LIFT SCORE</span>
                     </div>
                 </div>
-                <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-white/10 rounded-xl">
+                <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-white/10 rounded-lg">
                     <div class="flex justify-between items-start">
                         <div class="min-w-0">
                             <p class="font-mono text-on-surface text-body-md font-bold truncate">multi-thread-gap-detector</p>
                             <p class="text-[10px] text-muted-custom">v2.1.0 • Source #FC-0912 • Shadow</p>
                         </div>
-                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded-xl">A/B Test</span>
+                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded">A/B Test</span>
                     </div>
                     <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
                         <span class="text-on-surface font-bold text-headline-md tracking-tight">+18.0%*</span>
                         <span class="text-[10px] text-muted-custom">PROJECTED</span>
                     </div>
                 </div>
-                <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-white/10 rounded-xl">
+                <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-white/10 rounded-lg">
                     <div class="flex justify-between items-start">
                         <div class="min-w-0">
                             <p class="font-mono text-on-surface text-body-md font-bold truncate">proposal-handoff-checklist</p>
                             <p class="text-[10px] text-muted-custom">v1.0.0 • Pre-Sales Queue • Pending</p>
                         </div>
-                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded-xl">Review</span>
+                        <span class="bg-white/5 text-on-surface-variant text-badge font-badge uppercase px-2 py-0.5 rounded">Review</span>
                     </div>
                     <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
                         <span class="text-on-surface font-bold text-headline-md tracking-tight">Qual.</span>
                         <span class="text-[10px] text-muted-custom">ANALYSIS</span>
                     </div>
                 </div>
-                <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-error/50 rounded-xl">
+                <div class="glass-card px-card-row-p py-3 flex flex-col justify-between min-h-[90px] border-l-4 border-error/50 rounded-lg">
                     <div class="flex justify-between items-start">
                         <div class="min-w-0">
                             <p class="font-mono text-on-surface/50 text-body-md font-bold line-through truncate">opp-dedup-fuzzy-match</p>
                             <p class="text-[10px] text-muted-custom">v4.0.2 • Cluster #FC-0899 • Archived</p>
                         </div>
-                        <span class="bg-error/10 text-error text-badge font-badge uppercase px-2 py-0.5 rounded-xl">Rejected</span>
+                        <span class="bg-error/10 text-error text-badge font-badge uppercase px-2 py-0.5 rounded">Rejected</span>
                     </div>
                     <div class="flex justify-between items-baseline mt-1 border-t border-white/5 pt-1.5">
                         <span class="text-error/50 font-bold text-headline-md tracking-tight">-2.1%</span>
@@ -504,13 +506,14 @@
     </main>
 </div>
 
+<!-- Skill Registry Section -->
 <div id="registry-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
     <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-[#050607]/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
         <div class="flex items-center gap-sm">
             <span class="material-symbols-outlined text-secondary font-bold">inventory_2</span>
             <h1 class="font-display text-headline-md font-bold tracking-tighter text-secondary">Skill Registry</h1>
         </div>
-        <div class="w-8 h-8 rounded-xl bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
+        <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
     </header>
     <main class="px-container-margin space-y-gap-md max-w-full pt-2 bg-[#050607]">
         <header class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
@@ -537,10 +540,10 @@
                 </div>
             </div>
             <div class="flex items-center gap-sm">
-                <button class="px-4 py-2 bg-secondary/10 text-secondary font-bold text-body-md rounded-xl border border-secondary/30 hover:bg-secondary/20 transition-colors flex items-center gap-sm">
+                <button class="px-4 py-2 bg-secondary/10 text-secondary font-bold text-body-md rounded-lg border border-secondary/30 hover:bg-secondary/20 transition-colors flex items-center gap-sm">
                     <span class="material-symbols-outlined text-lg">schema</span>View Graph
                 </button>
-                <button class="px-4 py-2 bg-error-container/20 text-error font-bold text-body-md rounded-xl border border-error/20 hover:bg-error-container/30 transition-colors flex items-center gap-sm">
+                <button class="px-4 py-2 bg-error-container/20 text-error font-bold text-body-md rounded-lg border border-error/20 hover:bg-error-container/30 transition-colors flex items-center gap-sm">
                     <span class="material-symbols-outlined text-lg">history</span>Rollback
                 </button>
             </div>
@@ -553,20 +556,20 @@
             <button class="px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors font-medium text-body-md">Dependencies</button>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-gap-md">
-            <div class="lg:col-span-2 glass-card rounded-xl p-card-stat-p flex flex-col">
+            <div class="lg:col-span-2 glass-card rounded-lg p-card-stat-p flex flex-col">
                 <div class="flex items-center justify-between mb-6">
                     <span class="font-badge text-badge uppercase text-on-surface-variant">A/B TEST RESULTS — V3.2.1 VS V3.1.0</span>
                     <span class="material-symbols-outlined text-on-surface-variant text-lg">info</span>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-6">
-                    <div class="p-5 bg-gradient-to-b from-[#0a0c0d] to-[#050607] rounded-xl border border-white/5 relative group">
+                    <div class="p-5 bg-gradient-to-b from-[#1a1d20] to-[#16191b] rounded-lg border border-white/5 relative group">
                         <div class="absolute top-4 right-4 text-on-surface-variant font-label-sm text-label-sm">BASELINE V3.1.0</div>
                         <div class="mt-4">
                             <span class="font-display text-3xl leading-tight font-bold text-error">61.2%</span>
                             <p class="text-on-surface-variant font-body-md text-body-md">acceptance rate</p>
                         </div>
                     </div>
-                    <div class="p-5 bg-gradient-to-b from-[#0a0c0d] to-[#050607] rounded-xl border relative group border-l-4" style="border-left-color: rgb(168, 208, 141); box-shadow: -10px 0 20px rgba(168, 208, 141, 0.03);">
+                    <div class="p-5 bg-gradient-to-b from-[#1a1d20] to-[#16191b] rounded-lg border relative group border-l-4" style="border-left-color: rgb(168, 208, 141); box-shadow: -10px 0 20px rgba(168, 208, 141, 0.03);">
                         <div class="absolute top-4 right-4 text-on-surface font-label-sm text-label-sm">CHALLENGER V3.2.1</div>
                         <div class="mt-4">
                             <span class="font-display text-3xl leading-tight font-bold" style="color: rgb(168, 208, 141);">84.6%</span>
@@ -574,12 +577,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-auto bg-secondary/5 border border-secondary/10 p-3 rounded-xl flex items-center gap-sm">
+                <div class="mt-auto bg-secondary/5 border border-secondary/10 p-3 rounded-lg flex items-center gap-sm">
                     <span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
                     <span class="font-body-md text-body-md text-secondary font-medium">+23.4% lift · p=0.003 · n=1,847</span>
                 </div>
             </div>
-            <div class="glass-card rounded-xl p-card-stat-p">
+            <div class="glass-card rounded-lg p-card-stat-p">
                 <span class="font-badge text-badge uppercase text-on-surface-variant block mb-6">SKILL METADATA</span>
                 <div class="space-y-5">
                     <div class="flex justify-between items-start">
@@ -608,7 +611,7 @@
                     </div>
                 </div>
             </div>
-            <div class="lg:col-span-3 glass-card rounded-xl overflow-hidden">
+            <div class="lg:col-span-3 glass-card rounded-lg overflow-hidden">
                 <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
                     <span class="font-badge text-badge uppercase text-on-surface-variant">VERSION HISTORY — 4 VERSIONS · 3 ANCESTORS</span>
                     <button class="text-secondary font-label-sm text-label-sm hover:underline">Download CSV</button>
@@ -651,7 +654,9 @@
     </main>
 </div>
 
+<!-- Workflows Section -->
 <div id="workflows-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]">
+    <!-- Added matching application header component context for Workflows View layout[cite: 3] -->
     <header class="bg-[#050607]/95 backdrop-blur-md border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex items-center justify-end px-8 py-2 border-b border-white/10 gap-4 shrink-0">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
@@ -668,8 +673,8 @@
                 <p class="text-sm text-on-surface-variant mt-1">Monitor background trace loops and shadow evaluation metrics.</p>
             </div>
             <div class="flex gap-3">
-                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-xl text-sm font-bold text-secondary hover:bg-secondary/20">Config History</button>
-                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-xl text-sm font-bold text-secondary hover:bg-secondary/20">Refresh Logs</button>
+                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-lg text-sm font-bold text-secondary hover:bg-secondary/20">Config History</button>
+                <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-lg text-sm font-bold text-secondary hover:bg-secondary/20">Refresh Logs</button>
             </div>
         </div>
         <nav class="mt-2 overflow-x-auto no-scrollbar">
@@ -686,7 +691,7 @@
             <span class="material-symbols-outlined text-secondary font-bold">account_tree</span>
             <h1 class="font-display text-headline-md font-bold tracking-tighter text-secondary">Workflows</h1>
         </div>
-        <div class="w-8 h-8 rounded-xl bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
+        <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
     </header>
     <main class="flex-1 min-h-[calc(100vh-4rem)] bg-[#050607] relative flex flex-col md:flex-row overflow-hidden">
         <section class="flex-1 p-6 overflow-y-auto custom-scrollbar bg-[#050607]">
@@ -711,7 +716,7 @@
                     <div>Duration</div>
                     <div>Skill Registry</div>
                 </div>
-                <div class="grid grid-cols-6 px-4 py-4 bg-[#0a0c0d] glass-border rounded-lg items-center border-l-3 border-[#5ce0d0] group hover:bg-[#101213] transition-all cursor-pointer">
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center border-l-3 border-[#5ce0d0] group hover:bg-[#1f2326] transition-all cursor-pointer">
                     <div class="col-span-2 font-body-md text-body-md text-secondary font-bold">wf-evo-0912-v2</div>
                     <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
                     <div>
@@ -722,7 +727,7 @@
                     <div class="font-body-md text-body-md text-on-surface-variant">4h 12m</div>
                     <div class="font-body-md text-body-md text-on-surface truncate pr-4">multi-thread-gap-detector</div>
                 </div>
-                <div class="grid grid-cols-6 px-4 py-4 bg-[#0a0c0d] glass-border rounded-lg items-center group hover:bg-[#101213] transition-all cursor-pointer">
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center group hover:bg-[#1f2326] transition-all cursor-pointer">
                     <div class="col-span-2 font-body-md text-body-md text-on-surface/80">wf-ab-retail-exp</div>
                     <div class="font-body-md text-body-md text-on-surface">A/B Test</div>
                     <div>
@@ -731,7 +736,7 @@
                     <div class="font-body-md text-body-md text-on-surface-variant">2d 6h</div>
                     <div class="font-body-md text-body-md text-on-surface truncate pr-4">expansion-retail-to-pers</div>
                 </div>
-                <div class="grid grid-cols-6 px-4 py-4 bg-[#0a0c0d] glass-border rounded-lg items-center group hover:bg-[#101213] transition-all cursor-pointer">
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center group hover:bg-[#1f2326] transition-all cursor-pointer">
                     <div class="col-span-2 font-body-md text-body-md text-on-surface/80">wf-evo-0847-v3</div>
                     <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
                     <div>
@@ -740,7 +745,7 @@
                     <div class="font-body-md text-body-md text-on-surface-variant">4h 23m</div>
                     <div class="font-body-md text-body-md text-on-surface truncate pr-4">lead-routing-geo-industry</div>
                 </div>
-                <div class="grid grid-cols-6 px-4 py-4 bg-[#0a0c0d] glass-border rounded-lg items-center group hover:bg-[#101213] transition-all cursor-pointer">
+                <div class="grid grid-cols-6 px-4 py-4 bg-[#16191b] glass-border rounded-lg items-center group hover:bg-[#1f2326] transition-all cursor-pointer">
                     <div class="col-span-2 font-body-md text-body-md text-error/80">wf-evo-0899-v2</div>
                     <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
                     <div>
@@ -757,7 +762,7 @@
                     <h4 class="font-headline-md text-label-sm font-bold text-on-surface uppercase tracking-wider">Workflow Detail</h4>
                     <span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-secondary/20">Running</span>
                 </div>
-                <div class="bg-[#0a0c0d] border border-white/5 p-3 rounded-lg flex justify-between items-center">
+                <div class="bg-[#16191b] border border-white/5 p-3 rounded-lg flex justify-between items-center">
                     <code class="text-secondary font-mono text-[10px] font-bold">WF-EVO-0912-V2</code>
                     <span class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-tighter opacity-70">4h 12m elapsed</span>
                 </div>
@@ -813,7 +818,7 @@
                     <p class="font-body-md text-body-md leading-snug mb-4 lowercase text-on-surface">
                         shadow phase performance exceeds baseline by 14%. recommendation: fast-track to live split.
                     </p>
-                    <button class="w-full border border-secondary/30 font-bold py-2 rounded text-label-sm hover:bg-secondary/10 transition-all uppercase tracking-wider text-secondary bg-secondary/10">
+                    <button class="w-full border border-secondary/30 font-bold py-2 rounded-lg text-label-sm hover:bg-secondary/10 transition-all uppercase tracking-wider text-secondary bg-secondary/10">
                         view shadow metrics
                     </button>
                 </div>
@@ -822,6 +827,7 @@
     </main>
 </div>
 
+<!-- Guardrails Section View -->
 <div id="guardrails-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
     <header class="bg-[#050607]/95 backdrop-blur-md border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex items-center justify-end px-8 py-2 border-b border-white/10 gap-4 shrink-0">
@@ -855,7 +861,8 @@
 
     <main class="flex-1 p-8 space-y-8 bg-[#050607]">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <section class="bg-[#0a0c0d] rounded-lg border border-white/5 p-6" id="criteria-panel">
+            <!-- Dynamic Candidate Promotion Criteria Sliders Component Integrated -->
+            <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" id="criteria-panel">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-6 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">analytics</span>Candidate Promotion Criteria
                 </h3>
@@ -899,7 +906,8 @@
                 </div>
             </section>
 
-            <section class="bg-[#0a0c0d] rounded-lg border border-white/5 p-6" data-purpose="execution-controls">
+            <!-- Execution & Approval Controls -->
+            <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" data-purpose="execution-controls">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">settings_input_component</span>Execution &amp; Approval Controls
                 </h3>
@@ -911,7 +919,7 @@
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input checked="" class="sr-only peer" type="checkbox">
-                            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-accent"></div>
+                            <div class="w-11 h-6 bg-[#1a1d20] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-accent"></div>
                         </label>
                     </div>
                     <div class="flex items-start justify-between py-4 gap-4">
@@ -921,14 +929,15 @@
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input checked="" class="sr-only peer" type="checkbox">
-                            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-accent"></div>
+                            <div class="w-11 h-6 bg-[#1a1d20] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-accent"></div>
                         </label>
                     </div>
                 </div>
             </section>
         </div>
 
-        <section class="bg-[#0a0c0d] rounded-lg border border-white/5 overflow-hidden" data-purpose="active-nemo-rails">
+        <!-- Active Rails Table Section -->
+        <section class="bg-[#16191b] rounded-lg border border-white/5 overflow-hidden" data-purpose="active-nemo-rails">
             <div class="p-6 border-b border-white/5 flex items-center justify-between">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">security</span>Active NeMo Rails (6 Custom • 12 Default)
@@ -964,6 +973,7 @@
     </main>
 </div>
 
+<!-- Mobile Bottom Navigation -->
 <nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 border-t border-white/5 bg-surface-container-low/95 backdrop-blur-xl">
     <a class="flex flex-col items-center justify-center text-secondary transition-all active:scale-90" href="#" onclick="switchPage('dashboard'); return false;">
         <span class="material-symbols-outlined">dashboard</span>

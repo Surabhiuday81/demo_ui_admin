@@ -312,19 +312,19 @@
     </div>
     <nav class="flex-1 space-y-1 px-3">
         <a class="bg-secondary/10 text-secondary font-bold flex items-center px-4 py-2.5 transition-all rounded-lg" href="#" onclick="switchPage('dashboard')">
-            <span class="material-symbols-outlined mr-3 text-[20px]">dashboard</span>
+            <span class="material-symbols-outlined mr-4 text-[20px]">dashboard</span>
             <span class="font-body-md text-body-md">Dashboard</span>
         </a>
         <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-xl group" href="#" onclick="switchPage('registry')">
-            <span class="material-symbols-outlined mr-3 text-[20px]">inventory_2</span>
+            <span class="material-symbols-outlined mr-4 text-[20px]">inventory_2</span>
             <span class="font-body-md text-body-md">Skill Registry</span>
         </a>
         <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-xl group" href="#" onclick="switchPage('workflows')">
-            <span class="material-symbols-outlined mr-3 text-[20px]">account_tree</span>
+            <span class="material-symbols-outlined mr-4 text-[20px]">account_tree</span>
             <span class="font-body-md text-body-md">Workflows</span>
         </a>
         <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-xl group" href="#" onclick="switchPage('guardrails')">
-            <span class="material-symbols-outlined mr-3 text-[20px]">gpp_maybe</span>
+            <span class="material-symbols-outlined mr-4 text-[20px]">gpp_maybe</span>
             <span class="font-body-md text-body-md">Guardrails</span>
         </a>
     </nav>
@@ -520,9 +520,9 @@
                 <span class="material-symbols-outlined text-[20px]">help</span>
             </div>
         </div>
-        <div class="flex items-center justify-between">
-            <div class="flex items-center gap-md">
-                <div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary border border-secondary/20">
+        <div class="flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary border border-secondary/20 shrink-0">
                     <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
                 </div>
                 <div>
@@ -530,11 +530,11 @@
                     <p class="text-sm text-on-surface-variant mt-1">v3.2.1 • Lineage: 3 ancestors • 1,847 invocations</p>
                 </div>
             </div>
-            <div class="flex items-center gap-sm">
-                <button class="px-4 py-2 bg-secondary/10 text-secondary font-bold text-body-md rounded-lg border border-secondary/30 hover:bg-secondary/20 transition-colors flex items-center gap-sm">
+            <div class="flex items-center gap-3">
+                <button class="px-4 py-2 bg-secondary/10 text-secondary font-bold text-body-md rounded-lg border border-secondary/30 hover:bg-secondary/20 transition-colors flex items-center gap-2">
                     <span class="material-symbols-outlined text-lg">schema</span>View Graph
                 </button>
-                <button class="px-4 py-2 bg-error-container/20 text-error font-bold text-body-md rounded-xl border border-error/20 hover:bg-error-container/30 transition-colors flex items-center gap-sm">
+                <button class="px-4 py-2 bg-error-container/20 text-error font-bold text-body-md rounded-xl border border-error/20 hover:bg-error-container/30 transition-colors flex items-center gap-2">
                     <span class="material-symbols-outlined text-lg">history</span>Rollback
                 </button>
             </div>
@@ -552,7 +552,7 @@
         <div id="registry-code-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg p-5 flex flex-col gap-3">
                 <div class="flex items-center justify-between border-b border-white/5 pb-3">
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-3">
                         <span class="material-symbols-outlined text-secondary text-sm">data_object</span>
                         <span class="font-mono text-xs font-bold text-on-surface">skills.json</span>
                     </div>
@@ -599,7 +599,7 @@
                         <div class="mt-4"></div>
                     </div>
                 </div>
-                <div class="mt-auto bg-secondary/5 border border-secondary/10 p-3 rounded-lg flex items-center gap-sm">
+                <div class="mt-auto bg-secondary/5 border border-secondary/10 p-3 rounded-lg flex items-center gap-3">
                     <span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
                     <span class="font-body-md text-body-md text-secondary font-medium">+23.4% lift · p=0.003 · n=1,847</span>
                 </div>
@@ -660,7 +660,7 @@
                                 <td class="p-card-row-p text-on-surface-variant">2h ago</td>
                                 <td class="p-card-row-p text-on-surface-variant">EvoForge + review</td>
                                 <td class="p-card-row-p">
-                                    <div class="flex items-center gap-sm">
+                                    <div class="flex items-center gap-3">
                                         <div class="flex-1 h-1.5 w-24 bg-gradient-to-r from-[#5ce0d0]/20 to-[#333536] rounded-full overflow-hidden relative">
                                             <div class="h-full bg-[#5ce0d0]" style="width: 84.6%"></div>
                                         </div>
@@ -677,7 +677,7 @@
                                 <td class="p-card-row-p text-on-surface-variant">12d ago</td>
                                 <td class="p-card-row-p text-on-surface-variant">EvoForge + review</td>
                                 <td class="p-card-row-p">
-                                    <div class="flex items-center gap-sm">
+                                    <div class="flex items-center gap-3">
                                         <div class="flex-1 h-1.5 w-24 bg-[#141617] rounded-full overflow-hidden relative">
                                             <div class="h-full bg-[#83898d]" style="width: 61.2%"></div>
                                         </div>
@@ -694,7 +694,7 @@
                                 <td class="p-card-row-p text-on-surface-variant">3mo ago</td>
                                 <td class="p-card-row-p text-on-surface-variant">EvoForge + review</td>
                                 <td class="p-card-row-p">
-                                    <div class="flex items-center gap-sm">
+                                    <div class="flex items-center gap-3">
                                         <div class="flex-1 h-1.5 w-24 bg-[#141617] rounded-full overflow-hidden relative">
                                             <div class="h-full bg-[#83898d]" style="width: 55.0%"></div>
                                         </div>
@@ -788,7 +788,7 @@
         </div>
         <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant border border-white/10">NS</div>
     </header>
-    <main class="flex-1 min-h-screen bg-[#050607] relative flex flex-col md:flex-row overflow-hidden">
+    <main class="flex-1 min-h-[calc(100vh-4rem)] bg-[#050607] relative flex flex-col md:flex-row overflow-hidden">
         <section class="flex-1 p-6 overflow-y-auto custom-scrollbar bg-[#050607]">
             <div class="mb-8">
                 <h3 class="font-headline-lg text-2xl text-on-surface mb-1">Temporal Workflows</h3>
@@ -816,7 +816,7 @@
                     <div class="font-body-md text-body-md text-on-surface">Skill Evolution</div>
                     <div>
                         <span class="inline-flex items-center bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-secondary/20">
-                            <span class="w-1 h-1 rounded-full bg-secondary mr-1.5 animate-pulse-subtle"></span>Running
+                            <span class="w-1 h-1 rounded-full bg-secondary mr-2 animate-pulse-subtle"></span>Running
                         </span>
                     </div>
                     <div class="font-body-md text-body-md text-on-surface-variant">4h 12m</div>
@@ -913,7 +913,7 @@
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">notifications</span>
-                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-[#050607]"></span>
+                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-[#121415]"></span>
             </div>
             <div class="cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">help</span>

@@ -255,6 +255,42 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* Fixed Range Slider Overrides for layout alignment */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            background: transparent;
+            margin: 0;
+            padding: 0;
+            height: 24px;
+        }
+        input[type="range"]:focus {
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: #333536;
+            height: 6px;
+            border-radius: 9999px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 9999px;
+            background: #ffffff;
+            border: 2px solid #5ce0d0;
+            cursor: pointer;
+            margin-top: -5px;
+            box-shadow: 0 0 10px rgba(92, 224, 208, 0.3);
+            transition: transform 0.1s ease;
+        }
+        input[type="range"]:active::-webkit-slider-thumb {
+            transform: scale(1.25);
+            background-color: #5ce0d0;
+        }
     </style>
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden flex min-h-screen">
@@ -761,10 +797,9 @@
     </main>
 </div>
 
-<!-- Guardrails Section View (Enhanced UI Policies Integrated) -->
+<!-- Guardrails Section View -->
 <div id="guardrails-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto">
-    <!-- Top Configuration Bar Component -->
-    <header class="bg-[#121415]/95 backdrop-blur-md border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4" data-purpose="guardrails-top-bar">
+    <header class="bg-[#121415]/95 backdrop-blur-md border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex items-center justify-end px-8 py-2 border-b border-white/10 gap-4 shrink-0">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">notifications</span>
@@ -784,70 +819,64 @@
                 <button class="py-2 px-6 bg-secondary/10 border border-secondary rounded-lg text-sm font-bold text-secondary transition-hover hover:bg-secondary/20">Save Changes</button>
             </div>
         </div>
-        <!-- Internal Section Navigation Tabs -->
         <nav class="mt-2 overflow-x-auto no-scrollbar" data-purpose="navigation-tabs">
             <div class="flex whitespace-nowrap gap-8">
-                <a class="py-3 text-sm font-medium border-b-2 border-brand-accent text-brand-accent" href="#">Approval Thresholds</a>
-                <a class="py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#">NeMo Rail Definitions</a>
-                <a class="py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#">Safety Policies</a>
-                <a class="py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#">Audit Log</a>
+                <a class="toggle-tab py-3 text-sm font-medium border-b-2 border-brand-accent text-brand-accent" href="#" onclick="handleToggleClick(this)">Approval Thresholds</a>
+                <a class="toggle-tab py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#" onclick="handleToggleClick(this)">NeMo Rail Definitions</a>
+                <a class="toggle-tab py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#" onclick="handleToggleClick(this)">Safety Policies</a>
+                <a class="toggle-tab py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" href="#" onclick="handleToggleClick(this)">Audit Log</a>
             </div>
         </nav>
     </header>
 
     <main class="flex-1 p-8 space-y-8">
-        <!-- Two-Column Control Configuration Layout Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Left Side Column: Candidate Promotion Criteria Sliders Component -->
-            <section class="bg-[#141819] rounded-lg border border-white/5 p-6" data-purpose="candidate-criteria-section">
-                <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-8 flex items-center gap-2">
+            <!-- Dynamic Candidate Promotion Criteria Sliders Component Integrated -->
+            <section class="bg-[#141819] rounded-lg border border-white/5 p-6" id="criteria-panel">
+                <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-6 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">analytics</span>Candidate Promotion Criteria
                 </h3>
-                <div class="space-y-10">
-                    <div class="space-y-4">
+                <div class="space-y-6">
+                    <div class="space-y-2">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-on-surface">Min A/B Test Lift</span>
-                            <span class="text-sm font-bold text-brand-accent">+15%</span>
+                            <span class="text-sm font-bold text-brand-accent" id="val-lift">+15%</span>
                         </div>
-                        <div class="relative h-2 w-full bg-surface-container-highest rounded-full">
-                            <div class="absolute h-full w-[65%] bg-gradient-to-r from-teal-500/30 to-surface-container-highest/30 rounded-full"></div>
-                            <div class="absolute top-1/2 left-[65%] -translate-x-1/2 w-4 h-4 bg-white border-2 border-brand-accent rounded-full shadow-lg cursor-pointer"></div>
+                        <div class="relative w-full flex items-center">
+                            <input class="w-full" id="slide-lift" max="50" min="0" type="range" value="15">
                         </div>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-2">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-on-surface">Min Sample Size (n)</span>
-                            <span class="text-sm font-bold text-brand-accent">500</span>
+                            <span class="text-sm font-bold text-brand-accent" id="val-samples">500</span>
                         </div>
-                        <div class="relative h-2 w-full bg-surface-container-highest rounded-full">
-                            <div class="absolute h-full w-[45%] bg-gradient-to-r from-teal-500/30 to-surface-container-highest/30 rounded-full"></div>
-                            <div class="absolute top-1/2 left-[45%] -translate-x-1/2 w-4 h-4 bg-white border-2 border-brand-accent rounded-full shadow-lg cursor-pointer"></div>
+                        <div class="relative w-full flex items-center">
+                            <input class="w-full" id="slide-samples" max="2000" min="100" step="50" type="range" value="500">
                         </div>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-2">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-on-surface">Max p-value for Significance</span>
-                            <span class="text-sm font-bold text-brand-accent">0.05</span>
+                            <span class="text-sm font-bold text-brand-accent" id="val-pvalue">0.05</span>
                         </div>
-                        <div class="relative h-2 w-full bg-surface-container-highest rounded-full">
-                            <div class="absolute h-full w-[25%] bg-gradient-to-r from-teal-500/30 to-surface-container-highest/30 rounded-full"></div>
-                            <div class="absolute top-1/2 left-[25%] -translate-x-1/2 w-4 h-4 bg-white border-2 border-brand-accent rounded-full shadow-lg cursor-pointer"></div>
+                        <div class="relative w-full flex items-center">
+                            <input class="w-full" id="slide-pvalue" max="0.20" min="0.01" step="0.01" type="range" value="0.05">
                         </div>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-2">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-on-surface">Min Safety Score (NeMo + garak)</span>
-                            <span class="text-sm font-bold text-brand-accent">95%</span>
+                            <span class="text-sm font-bold text-brand-accent" id="val-safety">95%</span>
                         </div>
-                        <div class="relative h-2 w-full bg-surface-container-highest rounded-full">
-                            <div class="absolute h-full w-[95%] bg-gradient-to-r from-teal-500/30 to-surface-container-highest/30 rounded-full"></div>
-                            <div class="absolute top-1/2 left-[95%] -translate-x-1/2 w-4 h-4 bg-white border-2 border-brand-accent rounded-full shadow-lg cursor-pointer"></div>
+                        <div class="relative w-full flex items-center">
+                            <input class="w-full" id="slide-safety" max="100" min="70" type="range" value="95">
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Right Side Column: Execution & Approval Switch Matrix Component -->
+            <!-- Execution & Approval Controls -->
             <section class="bg-[#141819] rounded-lg border border-white/5 p-6" data-purpose="execution-controls">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">settings_input_component</span>Execution &amp; Approval Controls
@@ -873,49 +902,16 @@
                             <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-accent"></div>
                         </label>
                     </div>
-                    <div class="flex items-start justify-between py-4 gap-4">
-                        <div class="space-y-1">
-                            <p class="text-sm font-semibold text-on-surface leading-tight">Auto-generate from failure clusters</p>
-                            <p class="text-xs text-on-surface-variant">Synthesizes skills when cluster size reaches threshold of 5</p>
-                        </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input checked="" class="sr-only peer" type="checkbox">
-                            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-accent"></div>
-                        </label>
-                    </div>
-                    <div class="flex items-start justify-between py-4 gap-4">
-                        <div class="space-y-1">
-                            <p class="text-sm font-semibold text-on-surface leading-tight">Allow schema-modifying skills</p>
-                            <p class="text-xs text-on-surface-variant">Skills that create or alter Salesforce fields</p>
-                        </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input class="sr-only peer" type="checkbox">
-                            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-accent"></div>
-                        </label>
-                    </div>
-                    <div class="flex items-start justify-between py-4 gap-4">
-                        <div class="space-y-1">
-                            <p class="text-sm font-semibold text-on-surface leading-tight">Require human approval</p>
-                            <p class="text-xs text-on-surface-variant">Mandatory review for forecast, stage, and messaging changes</p>
-                        </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input checked="" class="sr-only peer" type="checkbox">
-                            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-accent"></div>
-                        </label>
-                    </div>
                 </div>
             </section>
         </div>
 
-        <!-- Full-Width Data Block: Active Rails Matrix Component -->
+        <!-- Active Rails Table Section -->
         <section class="bg-[#141819] rounded-lg border border-white/5 overflow-hidden" data-purpose="active-nemo-rails">
             <div class="p-6 border-b border-white/5 flex items-center justify-between">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">security</span>Active NeMo Rails (6 Custom • 12 Default)
                 </h3>
-                <button class="text-xs font-bold text-brand-accent hover:underline flex items-center gap-1 transition-colors">
-                    New Rail <span class="material-symbols-outlined text-[16px]">add</span>
-                </button>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm border-collapse">
@@ -940,35 +936,8 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr class="hover:bg-white/[0.02] transition-colors">
-                            <td class="px-6 py-4 font-semibold text-on-surface">governor-limit-guard</td>
-                            <td class="px-6 py-4">
-                                <span class="px-2.5 py-1 rounded-full bg-white/10 text-on-surface border border-white/10 text-[10px] font-bold uppercase">Warn</span>
-                            </td>
-                            <td class="px-6 py-4 text-on-surface-variant text-xs font-medium">Resource API</td>
-                            <td class="px-6 py-4 text-right">
-                                <span class="text-primary font-medium inline-flex items-center gap-2">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Active
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-white/[0.02] transition-colors">
-                            <td class="px-6 py-4 font-semibold text-on-surface">pii-field-redaction</td>
-                            <td class="px-6 py-4">
-                                <span class="px-2.5 py-1 rounded-full bg-error/10 text-error border border-error/20 text-[10px] font-bold uppercase">Block</span>
-                            </td>
-                            <td class="px-6 py-4 text-on-surface-variant text-xs font-medium">Output Masking</td>
-                            <td class="px-6 py-4 text-right">
-                                <span class="text-primary font-medium inline-flex items-center gap-2">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Active
-                                </span>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
-            </div>
-            <div class="p-4 bg-[#111415]/50 text-center border-t border-white/5">
-                <button class="text-xs font-bold text-brand-accent uppercase tracking-wider hover:text-brand-accent/80 transition-colors">View All Rails Configuration</button>
             </div>
         </section>
     </main>
@@ -1009,6 +978,15 @@
         button.addEventListener('mouseup', () => { button.style.transform = 'scale(1)'; });
         button.addEventListener('mouseleave', () => { button.style.transform = 'scale(1)'; });
     });
+
+    function handleToggleClick(selectedTab) {
+        document.querySelectorAll('.toggle-tab').forEach(tab => {
+            tab.classList.remove('border-brand-accent', 'text-brand-accent');
+            tab.classList.add('text-on-surface-variant', 'border-transparent', 'hover:text-on-surface');
+        });
+        selectedTab.classList.remove('text-on-surface-variant', 'border-transparent', 'hover:text-on-surface');
+        selectedTab.classList.add('border-brand-accent', 'text-brand-accent');
+    }
 
     function switchPage(page) {
         const dashboardPage = document.getElementById('dashboard-page');
@@ -1073,6 +1051,24 @@
             row.style.backgroundColor = '';
             row.style.transform = 'translateX(0)';
         });
+    });
+
+    // Global Interactive Range Sliders Event Bus Hook
+    const sliders = [
+        { input: 'slide-lift', value: 'val-lift', formatter: v => `+${v}%` },
+        { input: 'slide-samples', value: 'val-samples', formatter: v => v },
+        { input: 'slide-pvalue', value: 'val-pvalue', formatter: v => parseFloat(v).toFixed(2) },
+        { input: 'slide-safety', value: 'val-safety', formatter: v => `${v}%` }
+    ];
+
+    sliders.forEach(target => {
+        const inputEl = document.getElementById(target.input);
+        const valueEl = document.getElementById(target.value);
+        if(inputEl && valueEl) {
+            inputEl.addEventListener('input', (e) => {
+                valueEl.textContent = target.formatter(e.target.value);
+            });
+        }
     });
 </script>
 </body>

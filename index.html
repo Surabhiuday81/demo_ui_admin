@@ -197,10 +197,8 @@
         main {
             animation: fadeIn 0.4s ease-out;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @webkit-keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideInUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -211,7 +209,6 @@
         .glass-card:nth-child(4) { animation: slideInUp 0.4s ease-out 0.2s both; }
         .glass-card:nth-child(5) { animation: slideInUp 0.4s ease-out 0.25s both; }
         
-        /* Fixed and elevated structural blink indicator rules */
         @keyframes pulse-subtle {
             0%, 100% { opacity: 1; filter: drop-shadow(0 0 8px rgba(92, 224, 208, 0.8)); }
             50% { opacity: 0.15; filter: drop-shadow(0 0 0px rgba(92, 224, 208, 0)); }
@@ -315,6 +312,7 @@
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden flex min-h-screen bg-[#050607]">
 
+<!-- Navigation Drawer (Sidebar) -->
 <aside class="w-[240px] h-full fixed left-0 top-0 border-r border-white/5 bg-[#050607] hidden lg:flex flex-col py-6 z-50">
     <div class="px-6 mb-8 flex items-center gap-3">
         <div class="w-9 h-9 bg-secondary/10 flex items-center justify-center rounded-xl border border-secondary/20">
@@ -330,9 +328,13 @@
             <span class="material-symbols-outlined mr-4 text-[20px]">dashboard</span>
             <span class="font-body-md text-body-md">Dashboard</span>
         </a>
+        <!-- Added explicit pending notification label element text block directly into structural sidebar routing links -->
         <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-xl group" href="#" onclick="switchPage('registry')">
             <span class="material-symbols-outlined mr-4 text-[20px]">inventory_2</span>
-            <span class="font-body-md text-body-md">Skill Registry</span>
+            <span class="font-body-md text-body-md flex items-center justify-between w-full">
+                <span>Skill Registry</span>
+                <span class="text-[10px] bg-tertiary-container/20 text-tertiary-container border border-tertiary-container/30 rounded px-1.5 py-0.5 font-mono font-bold tracking-tight">2 Pending</span>
+            </span>
         </a>
         <a class="text-on-surface-variant hover:bg-surface-container-highest/30 flex items-center px-4 py-2.5 transition-all rounded-xl group" href="#" onclick="switchPage('workflows')">
             <span class="material-symbols-outlined mr-4 text-[20px]">account_tree</span>
@@ -354,6 +356,7 @@
     </div>
 </aside>
 
+<!-- Dashboard Page View -->
 <div class="flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]" id="dashboard-page">
     <header class="lg:hidden w-full top-0 sticky z-40 border-b border-white/5 bg-[#050607]/80 backdrop-blur-md flex justify-between items-center px-container-margin py-gap-sm">
         <div class="flex items-center gap-sm">
@@ -546,6 +549,7 @@
     </main>
 </div>
 
+<!-- Skill Registry Section Canvas Container -->
 <div id="registry-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
     <header class="bg-[#050607]/95 border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4" id="registry-main-header">
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
@@ -578,9 +582,15 @@
                 <h1 class="text-2xl font-bold text-on-surface">Skill Directory</h1>
                 <p class="text-sm text-on-surface-variant mt-1">Manage, audit, and investigate historical pipeline automation modules.</p>
             </div>
-            <button class="px-4 py-2 bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/20 text-sm font-bold rounded-lg transition-colors flex items-center gap-2" id="approval-filter-btn" onclick="toggleApprovalFilter()">
-                <span class="material-symbols-outlined text-base">verified_user</span>Awaiting Admin Approval
-            </button>
+            <!-- Integrated dynamic Context Graph button and pending counters explicitly inside list controls layout -->
+            <div class="flex items-center gap-3 shrink-0">
+                <button class="px-4 py-2 bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/20 text-sm font-bold rounded-lg transition-colors flex items-center gap-2" onclick="alert('Context Relationship Graph initialized.')">
+                    <span class="material-symbols-outlined text-base">hub</span>Context Graph
+                </button>
+                <button class="px-4 py-2 bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/20 text-sm font-bold rounded-lg transition-colors flex items-center gap-2" id="approval-filter-btn" onclick="toggleApprovalFilter()">
+                    <span class="material-symbols-outlined text-base">verified_user</span>Awaiting Admin Approval <span class="ml-1 text-[11px] text-[#fdb66e] font-mono font-bold">(2 Pending)</span>
+                </button>
+            </div>
         </div>
 
         <div class="gap-md border-b border-white/5 mt-2 hidden" id="registry-nav-tabs">
@@ -593,6 +603,7 @@
     </header>
 
     <main class="px-container-margin space-y-gap-md max-w-full pt-4 bg-[#050607]">
+        <!-- Skill Registry Directory Master List View -->
         <div id="registry-list-panel" class="space-y-4">
             <div class="space-y-2">
                 <div class="grid grid-cols-4 px-4 text-on-surface-variant font-label-sm text-[10px] uppercase tracking-widest opacity-50">
@@ -632,6 +643,7 @@
             </div>
         </div>
 
+        <!-- Code & Prompt Module View Container -->
         <div id="registry-code-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg p-5 flex flex-col gap-3">
                 <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -663,35 +675,15 @@
             </div>
         </div>
 
+        <!-- Dynamic Overview Dashboard Component Router Layer -->
         <div id="registry-overview-panel" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-gap-md">
-            <div class="lg:col-span-2 glass-card rounded-lg p-card-stat-p flex flex-col">
-                <div class="flex items-center justify-between mb-6">
-                    <span class="font-badge text-badge uppercase text-on-surface-variant">A/B TEST RESULTS — V3.2.1 VS V3.1.0</span>
-                    <span class="material-symbols-outlined text-on-surface-variant text-lg">info</span>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-6">
-                    <div class="p-5 bg-gradient-to-b from-[#1a1d20] to-[#16191b] rounded-lg border border-white/5 relative group flex flex-col justify-between min-h-[140px]">
-                        <div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider opacity-60">BASELINE V3.1.0</div>
-                        <div class="text-center py-2">
-                            <span class="font-display text-4xl leading-tight font-bold text-white">61.2%</span>
-                        </div>
-                        <p class="text-on-surface-variant/40 text-[11px] uppercase text-center font-bold tracking-widest">acceptance rate</p>
-                    </div>
-                    
-                    <div class="p-5 bg-[#16191b] rounded-lg border border-white/5 relative group flex flex-col justify-between min-h-[140px]">
-                        <div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider opacity-60">BASELINE V3.2.1</div>
-                        <div class="text-center py-2">
-                            <span class="font-display text-4xl leading-tight font-bold text-on-surface">84.6%</span>
-                        </div>
-                        <p class="text-on-surface-variant/40 text-[11px] uppercase text-center font-bold tracking-widest">Hit Rate</p>
-                    </div>
-                </div>
-                <div class="mt-auto bg-secondary/5 border border-secondary/10 p-3 rounded-lg flex items-center gap-3">
-                    <span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
-                    <span class="font-body-md text-body-md text-secondary font-medium">+23.4% lift · p=0.003 · n=1,847</span>
-                </div>
+            
+            <!-- Conditional Slot: Swapped seamlessly via Javascript controller classes between Report Summary and A/B Approval Layout Panels -->
+            <div class="lg:col-span-2 space-y-6" id="dynamic-evaluation-workspace-slot">
+                <!-- Fallback Initialized via script engine template strings -->
             </div>
-            <div class="glass-card rounded-lg p-card-stat-p">
+
+            <div class="glass-card rounded-lg p-card-stat-p h-fit">
                 <span class="font-badge text-badge uppercase text-on-surface-variant block mb-6">SKILL METADATA</span>
                 <div class="space-y-5">
                     <div class="flex justify-between items-start">
@@ -721,6 +713,7 @@
                 </div>
             </div>
             
+            <!-- Summary Table -->
             <div class="lg:col-span-3 glass-card rounded-lg overflow-hidden">
                 <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
                     <span class="font-badge text-badge uppercase text-on-surface-variant">VERSION HISTORY — 4 VERSIONS · 3 ANCESTORS</span>
@@ -796,6 +789,7 @@
             </div>
         </div>
 
+        <!-- Master Version Journal tab layer -->
         <div id="registry-history-panel" class="hidden space-y-6">
             <div class="glass-card rounded-lg overflow-hidden">
                 <div class="p-card-stat-p flex items-center justify-between border-b border-white/5">
@@ -853,6 +847,7 @@
             </div>
         </div>
 
+        <!-- Dependencies Panel -->
         <div id="registry-dependencies-panel" class="hidden grid grid-cols-1 md:grid-cols-2 gap-gap-md">
             <div class="glass-card p-5 rounded-lg border border-white/5">
                 <h4 class="text-sm font-bold text-on-surface mb-3 uppercase tracking-wider flex items-center gap-2 text-secondary">
@@ -892,6 +887,7 @@
     </main>
 </div>
 
+<!-- Workflows Section View -->
 <div id="workflows-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] bg-[#050607]">
     <header class="bg-[#050607]/95 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
@@ -971,7 +967,7 @@
                 <div class="flex items-center gap-3 mb-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse-subtle shrink-0"></span>
                     <h4 class="font-headline-md text-label-sm font-bold text-on-surface uppercase tracking-wider flex-1" id="wf-detail-title-label">Workflow Detail</h4>
-                    <button class="px-2 py-0.5 text-[10px] font-bold text-error bg-error/10 hover:bg-error/20 border border-error/20 rounded uppercase shrink-0" onclick="alert('Workflow loop sequence terminated gracefully.');">Terminate</button>
+                    <button class="px-2 py-0.5 text-[10px] font-bold text-error bg-error/10 hover:bg-error/20 border border border-error/20 rounded uppercase shrink-0" onclick="alert('Workflow loop sequence terminated gracefully.');">Terminate</button>
                 </div>
                 <div class="bg-[#16191b] border border-white/5 p-3 rounded-lg flex justify-between items-center">
                     <code class="text-secondary font-mono text-[10px] font-bold" id="wf-detail-code-label">WF-EVO-0912-V2</code>
@@ -1018,12 +1014,13 @@
     </main>
 </div>
 
+<!-- Guardrails Section View -->
 <div id="guardrails-page" class="hidden flex-1 flex flex-col min-w-0 lg:ml-[240px] overflow-y-auto bg-[#050607]">
     <header class="bg-[#050607]/95 border-b border-white/5 px-8 flex flex-col gap-4 shrink-0 py-4">
         <div class="flex justify-end items-center gap-gap-md py-4 px-1 border-b border-white/10">
             <div class="relative cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">notifications</span>
-                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-[#121415]"></span>
+                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-[#050607]"></span>
             </div>
             <div class="cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined text-[20px]">help</span>
@@ -1051,6 +1048,7 @@
 
     <main class="flex-1 p-8 space-y-8 bg-[#050607]">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Dynamic Candidate Promotion Criteria Sliders Component Integrated -->
             <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" id="criteria-panel">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-6 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">analytics</span>Candidate Promotion Criteria
@@ -1095,6 +1093,7 @@
                 </div>
             </section>
 
+            <!-- Execution & Approval Controls -->
             <section class="bg-[#16191b] rounded-lg border border-white/5 p-6" data-purpose="execution-controls">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm">settings_input_component</span>Execution &amp; Approval Controls
@@ -1102,7 +1101,7 @@
                 <div class="divide-y divide-white/5">
                     <div class="flex items-start justify-between py-4 gap-4">
                         <div class="space-y-1">
-                            <p class="text-sm font-semibold text-on-surface Flex leading-tight">Allow auto-apply for low-risk hygiene skills</p>
+                            <p class="text-sm font-semibold text-on-surface leading-tight">Allow auto-apply for low-risk hygiene skills</p>
                             <p class="text-xs text-on-surface-variant">Restricted to actions pre-approved by RevOps team members</p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
@@ -1124,6 +1123,7 @@
             </section>
         </div>
 
+        <!-- Active Rails Table Section -->
         <section class="bg-[#16191b] rounded-lg border border-white/5 overflow-hidden" data-purpose="active-nemo-rails">
             <div class="p-6 border-b border-white/5 flex items-center justify-between">
                 <h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
@@ -1160,6 +1160,7 @@
     </main>
 </div>
 
+<!-- Mobile Bottom Navigation -->
 <nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 border-t border-white/5 bg-surface-container-low/95 backdrop-blur-xl">
     <a class="flex flex-col items-center justify-center text-secondary transition-all active:scale-90" href="#" onclick="switchPage('dashboard'); return false;">
         <span class="material-symbols-outlined">dashboard</span>
@@ -1220,89 +1221,78 @@
         }
     }
 
+    // 3. Dynamic evaluation workspace loading component re-mapper layer handles approved vs pending templates cleanly
     function loadSkillProfile(skillName) {
         const titleEl = document.getElementById('profile-banner-title');
         const subtitleEl = document.getElementById('profile-banner-subtitle');
+        const workspaceSlot = document.getElementById('dynamic-evaluation-workspace-slot');
         
         if (skillName === 'lead-routing-geo-industry') {
             titleEl.textContent = 'lead-routing-geo-industry';
             subtitleEl.textContent = 'v3.2.1 • Lineage: 3 ancestors • 1,847 invocations';
+            
+            // Injects text reports and data metrics summary layout elements for live elements
+            workspaceSlot.innerHTML = `
+                <div class="glass-card rounded-lg p-6 space-y-4">
+                    <h3 class="text-lg font-bold text-on-surface uppercase tracking-wide border-b border-white/5 pb-2">Skills Summary</h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed font-normal">
+                        This model component handles downstream pipeline execution for cross-industry geo-filtering routing routines. Live split production trace analytics indicate optimal structural latency with zero unhandled fallbacks recorded over the current rotation loop cycle.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 pt-2">
+                        <div class="p-3 bg-[#010203] rounded border border-white/5 font-mono text-center">
+                            <span class="block text-xl font-bold text-secondary">99.8%</span>
+                            <span class="text-[10px] text-on-surface-variant/40 uppercase tracking-widest font-sans font-bold">Uptime</span>
+                        </div>
+                        <div class="p-3 bg-[#010203] rounded border border-white/5 font-mono text-center">
+                            <span class="block text-xl font-bold text-primary-container">0.02%</span>
+                            <span class="text-[10px] text-on-surface-variant/40 uppercase tracking-widest font-sans font-bold">Error Rate</span>
+                        </div>
+                        <div class="p-3 bg-[#010203] rounded border border-white/5 font-mono text-center">
+                            <span class="block text-xl font-bold text-white">1,847</span>
+                            <span class="text-[10px] text-on-surface-variant/40 uppercase tracking-widest font-sans font-bold">Runs</span>
+                        </div>
+                    </div>
+                </div>`;
             toggleRegistryTabs('overview');
         } else if (skillName === 'multi-thread-gap-detector') {
             titleEl.textContent = 'multi-thread-gap-detector';
             subtitleEl.textContent = 'v2.1.0 • Lineage: 1 ancestor • 942 invocations';
+            
+            // Injects original split configuration testing panel attached with a clickable action button at bottom-right
+            workspaceSlot.innerHTML = `
+                <div class="glass-card rounded-lg p-card-stat-p flex flex-col relative pb-16">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-badge text-badge uppercase text-on-surface-variant">A/B TEST RESULTS — V2.1.0 VS V2.0.0</span>
+                        <span class="material-symbols-outlined text-on-surface-variant text-lg">info</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-6">
+                        <div class="p-5 bg-gradient-to-b from-[#1a1d20] to-[#16191b] rounded-lg border border-white/5 flex flex-col justify-between min-h-[140px]">
+                            <div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider opacity-60">BASELINE V2.0.0</div>
+                            <div class="text-center py-2">
+                                <span class="font-display text-4xl leading-tight font-bold text-white">61.2%</span>
+                            </div>
+                            <p class="text-on-surface-variant/40 text-[11px] uppercase text-center font-bold tracking-widest">acceptance rate</p>
+                        </div>
+                        <div class="p-5 bg-[#16191b] rounded-lg border border-white/5 flex flex-col justify-between min-h-[140px]">
+                            <div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider opacity-60">BASELINE V2.1.0</div>
+                            <div class="text-center py-2">
+                                <span class="font-display text-4xl leading-tight font-bold text-on-surface">84.6%</span>
+                            </div>
+                            <p class="text-on-surface-variant/40 text-[11px] uppercase text-center font-bold tracking-widest">Hit Rate</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto bg-secondary/5 border border-secondary/10 p-3 rounded-lg flex items-center gap-3">
+                        <span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+                        <span class="font-body-md text-body-md text-secondary font-medium">+23.4% lift · p=0.003 · n=942</span>
+                    </div>
+                    <!-- Clickable approve candidate pipeline action button component inside bottom-right workspace boundaries -->
+                    <div class="absolute bottom-4 right-4">
+                        <button class="px-4 py-1.5 bg-[#a8d08d] hover:bg-[#92ba78] text-[#092100] text-xs font-bold rounded uppercase tracking-wider transition-all" onclick="alert('Candidate skill approved and queued for core production migration loop.')">
+                            Approve Candidate
+                        </button>
+                    </div>
+                </div>`;
             toggleRegistryTabs('overview');
-        }
-    }
-
-    // 3. Dynamic layout engine rendering process updates for the added wf-ab-retail-exp instance
-    function loadWorkflowDetails(workflowId) {
-        const titleLabel = document.getElementById('wf-detail-title-label');
-        const codeLabel = document.getElementById('wf-detail-code-label');
-        const timeLabel = document.getElementById('wf-detail-time-label');
-        const stepsContainer = document.getElementById('wf-steps-container');
-
-        if(workflowId === 'wf-ab-retail-exp') {
-            titleLabel.textContent = "wf-ab-retail-exp";
-            codeLabel.textContent = "WF-AB-RETAIL-EXP";
-            timeLabel.textContent = "2d 6h elapsed";
-            stepsContainer.innerHTML = `
-                <div class="relative pl-8 pb-8">
-                    <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-background"></div>
-                    <div class="flex flex-col">
-                        <span class="font-body-md text-body-md text-on-surface font-bold">Experiment Initialized</span>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span class="font-label-sm text-[11px] text-on-surface-variant">t₀ • 2d 6h ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative pl-8 pb-8">
-                    <div class="absolute left-[-5.5px] top-1 w-2.5 h-2.5 rounded-full bg-secondary ring-4 ring-secondary/20 animate-pulse-subtle"></div>
-                    <div class="flex flex-col">
-                        <span class="font-body-md text-body-md text-secondary font-bold">Split Traffic Variant A/B Active</span>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span class="font-label-sm text-[11px] text-secondary/70 italic">n=4,192 sessions processed</span>
-                        </div>
-                    </div>
-                </div>`;
-        } else {
-            titleLabel.textContent = "Workflow Detail";
-            codeLabel.textContent = "WF-EVO-0912-V2";
-            timeLabel.textContent = "4h 12m elapsed";
-            stepsContainer.innerHTML = `
-                <div class="relative pl-8 pb-8">
-                    <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-background"></div>
-                    <div class="flex flex-col">
-                        <span class="font-body-md text-body-md text-on-surface font-bold">Trace Captured</span>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span class="font-label-sm text-[11px] text-on-surface-variant">t₀ • 4h 12m ago</span>
-                            <span class="text-white/10">•</span>
-                            <span class="font-label-sm text-[11px] text-primary">847 events</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative pl-8 pb-8">
-                    <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-background"></div>
-                    <div class="flex flex-col">
-                        <span class="font-body-md text-body-md text-on-surface font-bold">Skill Generated</span>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span class="font-label-sm text-[11px] text-on-surface-variant">t₂ • 3h 20m ago</span>
-                            <span class="text-white/10">•</span>
-                            <span class="font-label-sm text-[11px] text-secondary">Claude + Mistral-7B</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative pl-8 pb-8">
-                    <div class="absolute left-[-5.5px] top-1 w-2.5 h-2.5 rounded-full bg-secondary ring-4 ring-secondary/20 animate-pulse-subtle"></div>
-                    <div class="flex flex-col">
-                        <span class="font-body-md text-body-md text-secondary font-bold">A/B Test: Shadow Phase</span>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span class="font-label-sm text-[11px] text-secondary/70 italic">t₄ • processing</span>
-                            <span class="text-white/10">•</span>
-                            <span class="font-label-sm text-[11px] text-on-surface-variant">n=234 / 500 target</span>
-                        </div>
-                    </div>
-                </div>`;
         }
     }
 
